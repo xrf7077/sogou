@@ -17,6 +17,7 @@
   bottom: 0;
   left: 0;
   box-sizing: border-box;
+  background: #fff;
   ul {
     list-style: none;
     display: flex;

@@ -17,4 +17,11 @@ export default {}
   margin: 0;
   padding: 0;
 }
+body {
+ background-color: rgb(245, 245, 245);
+ font-family: -apple-system-font,"Helvetica Neue",sans-serif;
+}
+li {
+  list-style: none
+}
 </style>
