@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <h1>购物车</h1>
+    <h2>购物车</h2>
     <div id="cart">
       <div class="up">
         <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
@@ -8,19 +8,29 @@
       </div>
       <ul>
         <li v-for="data in datalist" :key="data.productId">
-          <input type="checkbox" v-model="checkgroup" :value="data" @change="handleItemChange" />
-          <img :src="data.image[0]" />
-          <p class="name">{{data.productName}}</p>
-          <p class="color">商品颜色:{{data.skuName}}</p>
-          <p class="price">单价:{{data.price/100+"."+data.price.toString().slice(-2)}}</p>
-          <p class="linePrice">原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</p>
-
-          <button @click="handleDel(data)">-</button>
-          {{data.productNum}}
-          <button @click="data.productNum++">+</button>
+          <div class="i-select">
+            <input type="checkbox" v-model="checkgroup" :value="data" @change="handleItemChange" />
+          </div>
+          <dl>
+            <dt>
+              <img :src="data.image[0]" />
+            </dt>
+            <dd>
+              <p class="name">{{data.productName}}</p>
+              <p class="color">商品颜色:{{data.skuName}}</p>
+              <span class="price">单价:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
+              <span
+                class="linePrice"
+              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>
+              <div class="calcu">
+                <button @click="handleDel(data)">-</button>
+                <input type="text" :value="data.productNum">
+                <button @click="data.productNum++">+</button>
+              </div>
+            </dd>
+          </dl>
         </li>
       </ul>
-      <p>合计:{{sum()}}</p>
     </div>
     <nav>
       <h3>为你推荐</h3>
@@ -31,10 +41,21 @@
         <dd>
           <p class="name">{{data.name}}</p>
           <p class="detail">{{data.desc}}</p>
-          <p class="price">{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</p>
+          <p class="price">¥:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</p>
         </dd>
       </dl>
+      <div class="bottom">
+        <p>没有更多了</p>
+      </div>
     </nav>
+    <div class="sum">
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
+      <div class="sub-cart">结算</div>
+      <p>
+        合计:
+        <span>{{sum()}}</span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -152,7 +173,7 @@ export default {
       for (var i in this.checkgroup) {
         sum += this.checkgroup[i].productNum * this.checkgroup[i].price
       }
-
+      sum = sum / 100 + '.' + sum.toString().slice(-2)
       return sum
     },
     handleChange () {
@@ -181,43 +202,195 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  text-align: center;
-  font-size: 30px;
-}
-.up {
-  width: 100%;
-  p {
-    float: right;
+#box {
+  background: white;
+  h2 {
+    text-align: center;
+    font-size: 1rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-weight: 400;
   }
-}
-#cart {
-  ul {
-    li {
-      img {
-        width: 100px;
-        height: 100px;
+  #cart {
+    background: white;
+    .up {
+      height: 2rem;
+      line-height: 2rem;
+      border-top: 0.01rem solid #ccc;
+      border-bottom: 0.01rem solid #ccc;
+      padding-left: 4%;
+      input {
+        margin-left: 4%;
+        margin-right: 3%;
       }
-      .name {
+    }
+    ul {
+      li {
+        .i-select {
+          line-height: 3.4rem;
+          height: 3.4rem;
+          float: left;
+          margin-left: 4%;
+          margin-right: 2%;
+          input {
+            float: left;
+            line-height: 3.4rem;
+            height: 4.9rem;
+            margin-left: 4%;
+          }
+        }
+        dl {
+          height: 3.57rem;
+          padding-top: 0.65rem;
+          padding-bottom: 0.65rem;
+          border-bottom: 0.01rem solid #ccc;
+          dt {
+            width: 3.47rem;
+            height: 3.47rem;
+            border: 0.05rem solid #ccc;
+            float: left;
+
+            img {
+              width: 3.47rem;
+              height: 3.47rem;
+              padding: 0;
+            }
+          }
+          dd {
+            width: 9.78rem;
+            height: 3.47rem;
+            font-size: 0.6rem;
+            float: right;
+            background: white;
+            position: relative;
+            .price {
+              position: absolute;
+              bottom: 0;
+              float: left;
+            }
+            .calcu {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              width: 4.34rem;
+              height: 1rem;
+              float: right;
+              input{
+                  display: inline;
+                  width: 2rem;
+                  height: 1rem;
+                  text-align: center;
+                  margin-left:.3rem;
+                  margin-right:.3rem;
+                  background: #f5f5f5;
+                  outline: none;
+                  border:none;
+              }
+              button{
+                  display: inline;
+              }
+            }
+          }
+        }
       }
     }
   }
-}
-nav {
+  nav {
     width: 100%;
-    margin-bottom: 400px;
-  dl {
-      width:45.5%;
+    background: white;
+    margin-top: 1rem;
+    overflow: hidden;
+
+    h3 {
+      font-size: 0.8rem;
+      font-weight: bold;
+      line-height: 2.5rem;
+      margin-left: 3%;
+      display: block;
+    }
+    dl {
+      width: 45.5%;
       float: left;
-        margin-left:3%;
-    dt {
-        width:100%;
-      img {
+      padding-left: 3%;
+      background: white;
+      display: block;
+      dt {
         width: 100%;
+        background: white;
+        display: block;
+
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+      dd {
+        width: 100%;
+        background: white;
+        display: block;
+        .name {
+          font-size: 0.7rem;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .detail {
+          font-size: 0.12rem;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .price {
+          color: red;
+          font-size: 0.7rem;
+        }
       }
     }
-    dd {
-        width: 100%;
+    .bottom {
+      height: 2.58rem;
+      float: left;
+      width: 100%;
+      text-align: center;
+      background: #f5f5f5;
+      color: #bfbfbf;
+      font-size: 0.5rem;
+      line-height: 1.34rem;
+      margin-bottom: 3.47rem;
+    }
+  }
+  .sum {
+    position: fixed;
+    bottom: 53px;
+    width: 96%;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    font-size: 0.59733rem;
+    background: white;
+    padding-left: 4%;
+
+    p {
+      float: right;
+      color: black;
+      margin-right: 5%;
+      font-size: 0.68rem;
+      span {
+        font-size: 0.68rem;
+        color: red;
+      }
+    }
+    input {
+      float: left;
+      color: black;
+      height: 2.2rem;
+      margin-right: .5rem;
+    }
+    .sub-cart {
+      width: 5rem;
+      height: 100%;
+      text-align: center;
+      color: white;
+      float: right;
+      background: red;
     }
   }
 }
