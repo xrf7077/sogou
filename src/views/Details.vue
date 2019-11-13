@@ -77,10 +77,12 @@ export default {
     Axios(`/api/product/product/product_detail?c=h5&s=20000&t=1573561721260&v=1.0&product_id=${this.$route.params.id}`)
       .then(res => {
         this.detail = res.data
+        console.log(this.detail)
       })
     Axios(`/api/product/sku/sku_stock_detail?c=h5&s=20000&t=1573564055256&v=1.0&product_id=${this.$route.params.id}&stock_type=1`)
       .then(res => {
         this.priceInfo = res.data
+        console.log(this.priceInfo)
       })
     // console.log(document.getElementById('#video').Media.duration)
     this.$store.commit('setIsTabbarShow', false)
