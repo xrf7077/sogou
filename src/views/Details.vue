@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="details">
     <header v-if="detail">
       <swiper id="banner" :options='options' :cName='cName' :pagination='pagination'>
         <div class="swiper-slide" v-for="(data,i) in detail.data.product.image" :key="i">
@@ -8,11 +8,11 @@
       </swiper>
       <div v-if="this.isPlayerShow" class="player-container">
         <div class="closePlayer" @click="isPlayerShow=false">&chi;</div>
-        <video id="video" :src="detail.data.product.video" controls = "true" preload="auto" autoplay="autoplay" muted loop>
+        <video id="video" :src="detail.data.product.video[0]" controls = "true" preload="auto" autoplay="autoplay" muted loop>
           您的浏览器版本过低，请升级您的浏览器
         </video>
       </div>
-      <div class="playerBtn" @click="isPlayerShow=!isPlayerShow">
+      <div class="playerBtn" v-if="detail.data.product.video[0]" @click="isPlayerShow=!isPlayerShow">
       </div>
     </header>
     <div class="detail-info" v-if="this.priceInfo">
@@ -25,6 +25,12 @@
         <span>{{parseInt(priceInfo.data.skuSalePriceRange[0]/100)+'.00'}}</span>
       </div>
     </div>
+    <div class="detail-select">
+      <div class="detail-select-row">
+        <span>已选</span>
+      </div>
+    </div>
+    <div class="detail-title">商品详情</div>
     <div v-html="detail.data.product.pcDetailDesc" v-if="detail"></div>
     <footer>
       <div class="footer-bar">
@@ -39,6 +45,9 @@
         </div>
       </div>
     </footer>
+    <div class="select-bar">
+
+    </div>
   </div>
 </template>
 
@@ -60,7 +69,8 @@ export default {
       },
       detail: null, // 商品数据
       priceInfo: null, // 价格信息
-      time: 0
+      time: 0,
+      selected: '雅典灰'
     }
   },
   beforeCreate () {
@@ -85,6 +95,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.detail-title{
+  height: 12.8%;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  font-size: 13px;
+  color: #EA413C;
+  border-top: 7px solid #f5f5f5;
+}
 .detail-info{
   padding: 15px 20px;
   .detail-content{
@@ -182,6 +201,7 @@ footer{
 }
 header{
   position: relative;
+  border-bottom: .5px solid #ccc;
 }
 .playerBtn{
   width: 26.1%;
