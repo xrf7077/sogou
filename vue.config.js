@@ -10,6 +10,11 @@ module.exports = {
         target: 'https://mall.sogou.com',
         changOrigin: true
       }
+    },
+    overlay: {
+      warning: false,
+      errors: false
     }
+
   }
 }
