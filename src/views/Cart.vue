@@ -3,8 +3,10 @@
     <h2>购物车</h2>
     <div id="cart">
       <div class="up">
-        <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
-        <!-- <p>编辑</p> -->
+        <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
+        <span>全选</span>
+        <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
+        <div @click="edited" v-show="$store.state.isCartSumShowed">完成</div>
       </div>
       <ul>
         <li v-for="data in datalist" :key="data.productId">
@@ -24,7 +26,7 @@
               >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>
               <div class="calcu">
                 <button @click="handleDel(data)">-</button>
-                <input type="text" :value="data.productNum">
+                <input type="text" :value="data.productNum" />
                 <button @click="data.productNum++">+</button>
               </div>
             </dd>
@@ -33,6 +35,7 @@
       </ul>
     </div>
     <nav>
+      <div class="top"></div>
       <h3>为你推荐</h3>
       <dl v-for="data in datalist1" :key="data.productId">
         <dt>
@@ -50,8 +53,9 @@
     </nav>
     <div class="sum">
       <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
-      <div class="sub-cart">结算</div>
-      <p>
+      <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
+      <button class="sub-cart_1" v-show="$store.state.isCartSumShowed">删除</button>
+      <p v-show="$store.state.isCartSumShow">
         合计:
         <span>{{sum()}}</span>
       </p>
@@ -66,6 +70,40 @@ export default {
       isAllChecked: false,
       checkgroup: [],
       datalist: [
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'
+          ],
+          productId: 25885,
+          linePrice: 59800,
+          productNum: 1,
+          subTotal: 59800,
+          productState: 1,
+          productName: '糖猫Y1 能学口语的视频电话手表',
+          skuName: '粉色',
+          price: 59800,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 71493,
+          selected: true
+        },
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'
+          ],
+          productId: 26028,
+          linePrice: 39800,
+          productNum: 1,
+          subTotal: 39800,
+          productState: 1,
+          productName: '搜狗AI录音笔C1炫彩版 ',
+          skuName: '纯真白',
+          price: 39800,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 71838,
+          selected: true
+        },
         {
           image: [
             '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'
@@ -83,7 +121,6 @@ export default {
           skuId: 50106,
           selected: false
         },
-
         {
           image: [
             '//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'
@@ -99,23 +136,6 @@ export default {
           stockNum: 10,
           shopId: 1,
           skuId: 66105,
-          selected: true
-        },
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/08/28/20190828102941_1887.png'
-          ],
-          productId: 26028,
-          linePrice: 39800,
-          productNum: 1,
-          subTotal: 39800,
-          productState: 1,
-          productName: '搜狗AI录音笔C1炫彩版 ',
-          skuName: '热烈红',
-          price: 39800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 71701,
           selected: false
         }
       ],
@@ -196,6 +216,14 @@ export default {
         alert('aa')
         data.productNum = 1
       }
+    },
+    edit () {
+      this.$store.commit('hideCartSum')
+      this.$store.commit('showCartSumed')
+    },
+    edited () {
+      this.$store.commit('showCartSum')
+      this.$store.commit('hideCartSumed')
     }
   }
 }
@@ -218,10 +246,23 @@ export default {
       line-height: 2rem;
       border-top: 0.01rem solid #ccc;
       border-bottom: 0.01rem solid #ccc;
-      padding-left: 4%;
+      font-size: 0.6rem;
       input {
         margin-left: 4%;
         margin-right: 3%;
+        height: 2rem;
+        line-height: 2rem;
+        float: left;
+      }
+      span {
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 0.6rem;
+      }
+      div {
+        float: right;
+        margin-right: 3%;
+        font-size: 0.6rem;
       }
     }
     ul {
@@ -275,19 +316,19 @@ export default {
               width: 4.34rem;
               height: 1rem;
               float: right;
-              input{
-                  display: inline;
-                  width: 2rem;
-                  height: 1rem;
-                  text-align: center;
-                  margin-left:.3rem;
-                  margin-right:.3rem;
-                  background: #f5f5f5;
-                  outline: none;
-                  border:none;
+              input {
+                display: inline;
+                width: 2rem;
+                height: 1rem;
+                text-align: center;
+                margin-left: 0.3rem;
+                margin-right: 0.3rem;
+                background: #f5f5f5;
+                outline: none;
+                border: none;
               }
-              button{
-                  display: inline;
+              button {
+                display: inline;
               }
             }
           }
@@ -300,7 +341,11 @@ export default {
     background: white;
     margin-top: 1rem;
     overflow: hidden;
-
+    .top {
+      width: 100%;
+      height: 0.6rem;
+      background: #f5f5f5;
+    }
     h3 {
       font-size: 0.8rem;
       font-weight: bold;
@@ -382,7 +427,7 @@ export default {
       float: left;
       color: black;
       height: 2.2rem;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
     .sub-cart {
       width: 5rem;
@@ -391,6 +436,20 @@ export default {
       color: white;
       float: right;
       background: red;
+    }
+    .sub-cart_1 {
+      border: 0.04rem solid #ccc;
+      border-radius: 1rem;
+      width: 3.5rem;
+      font-size: 0.6rem;
+      height: 1.5rem;
+      text-align: center;
+      float: right;
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      background: white;
     }
   }
 }

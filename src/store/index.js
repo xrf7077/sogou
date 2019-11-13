@@ -7,7 +7,9 @@ const store = new Vuex.Store({
   state: {
     HomeData: null,
     CateData: null,
-    isTabbarShow: true
+    isTabbarShow: true,
+    isCartSumShow: true,
+    isCartSumShowed: false
   },
   actions: {
     getHomeData (store) {
@@ -29,7 +31,20 @@ const store = new Vuex.Store({
     },
     setCateData (state, data) {
       state.CateData = data
+    },
+    showCartSum (state) {
+      state.isCartSumShow = true
+    },
+    hideCartSum (state) {
+      state.isCartSumShow = false
+    },
+    showCartSumed (state) {
+      state.isCartSumShowed = true
+    },
+    hideCartSumed (state) {
+      state.isCartSumShowed = false
     }
+
   },
   getters: {
     homeDataGetter (state) {
