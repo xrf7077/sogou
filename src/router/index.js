@@ -34,7 +34,7 @@ const routes = [{
   component: Tabbar
 },
 {
-  path: '/Details/:item',
+  path: '/Details/:id',
   component: Details
 }
 ]

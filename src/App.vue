@@ -1,15 +1,20 @@
 <template>
   <div id="app">
-    <tabbar></tabbar>
+    <tabbar v-if="this.isTabbarShowGetter"></tabbar>
     <router-view />
   </div>
 </template>
 
 <script>
 import tabbar from '@/views/Tabbar'
+import { mapGetters } from 'vuex'
 import Vue from 'vue'
 Vue.component('tabbar', tabbar)
-export default {}
+export default {
+  computed: {
+    ...mapGetters(['isTabbarShowGetter'])
+  }
+}
 </script>
 
 <style lang="scss">

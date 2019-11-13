@@ -1,0 +1,116 @@
+{
+    "code": 0,
+    "msg": "成功",
+    "data": {
+        "skuMap": {
+            "61:265": {
+                "skuStock": {
+                    "stockState": 1,
+                    "remainAmount": 11,
+                    "skuStockId": 4441,
+                    "type": 1,
+                    "hasFreezeStock": 0
+                },
+                "sku": {
+                    "skuName": "经典蓝色",
+                    "image": "//mall01.sogoucdn.com/image/2019/08/28/20190828102919_1885.png",
+                    "productId": 26028,
+                    "salePrice": 39800,
+                    "linePrice": 39800,
+                    "productName": "搜狗AI录音笔C1炫彩版 ",
+                    "skuId": 72028,
+                    "skuAttributeCombination": "61:265",
+                    "normalSaleFlag": 1
+                }
+            },
+            "61:263": {
+                "skuStock": {
+                    "stockState": 1,
+                    "remainAmount": 11,
+                    "skuStockId": 4435,
+                    "type": 1,
+                    "hasFreezeStock": 0
+                },
+                "sku": {
+                    "skuName": "经典黑色",
+                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102926_1886.png",
+                    "productId": 26028,
+                    "salePrice": 39800,
+                    "linePrice": 39800,
+                    "productName": "搜狗AI录音笔C1炫彩版 ",
+                    "skuId": 71998,
+                    "skuAttributeCombination": "61:263",
+                    "normalSaleFlag": 1
+                }
+            },
+            "61:259": {
+                "skuStock": {
+                    "stockState": 1,
+                    "remainAmount": 11,
+                    "skuStockId": 4423,
+                    "type": 1,
+                    "hasFreezeStock": 0
+                },
+                "sku": {
+                    "skuName": "热烈红",
+                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102941_1887.png",
+                    "productId": 26028,
+                    "salePrice": 39800,
+                    "linePrice": 39800,
+                    "productName": "搜狗AI录音笔C1炫彩版 ",
+                    "skuId": 71701,
+                    "skuAttributeCombination": "61:259",
+                    "normalSaleFlag": 1
+                }
+            },
+            "61:257": {
+                "skuStock": {
+                    "stockState": 1,
+                    "remainAmount": 11,
+                    "skuStockId": 4417,
+                    "type": 1,
+                    "hasFreezeStock": 0
+                },
+                "sku": {
+                    "skuName": "明媚黄",
+                    "image": "//mall01.sogoucdn.com/image/2019/08/28/20190828102951_1888.png",
+                    "productId": 26028,
+                    "salePrice": 39800,
+                    "linePrice": 39800,
+                    "productName": "搜狗AI录音笔C1炫彩版 ",
+                    "skuId": 71615,
+                    "skuAttributeCombination": "61:257",
+                    "normalSaleFlag": 1
+                }
+            },
+            "61:261": {
+                "skuStock": {
+                    "stockState": 1,
+                    "remainAmount": 11,
+                    "skuStockId": 4429,
+                    "type": 1,
+                    "hasFreezeStock": 0
+                },
+                "sku": {
+                    "skuName": "纯真白",
+                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png",
+                    "productId": 26028,
+                    "salePrice": 39800,
+                    "linePrice": 39800,
+                    "productName": "搜狗AI录音笔C1炫彩版 ",
+                    "skuId": 71838,
+                    "skuAttributeCombination": "61:261",
+                    "normalSaleFlag": 1
+                }
+            }
+        },
+        "skuLinePriceRange": [
+            39800,
+            39800
+        ],
+        "skuSalePriceRange": [
+            39800,
+            39800
+        ]
+    }
+}

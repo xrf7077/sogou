@@ -1,0 +1,90 @@
+{
+    "code": 0,
+    "msg": "成功",
+    "data": {
+        "product": {
+            "saleStartTime": "1565346623000",
+            "image": [
+                "//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png",
+                "//mall02.sogoucdn.com/image/2019/03/08/20190308130338_4522.jpg",
+                "//mall02.sogoucdn.com/image/2019/08/13/20190813125215_1818.jpg",
+                "//mall03.sogoucdn.com/image/2019/08/09/20190809183433_1768.png",
+                "//mall01.sogoucdn.com/image/2019/08/09/20190809183446_1769.jpg",
+                "//mall02.sogoucdn.com/image/2019/08/09/20190809183446_1770.jpg",
+                "//mall03.sogoucdn.com/image/2019/08/09/20190809183447_1771.jpg",
+                "//mall01.sogoucdn.com/image/2019/08/09/20190809183459_1772.jpg",
+                "//mall02.sogoucdn.com/image/2019/08/09/20190809183500_1773.jpg",
+                "//mall02.sogoucdn.com/image/2019/08/09/20190809183500_1774.jpg",
+                "http://mall01.sogoucdn.com/image/2019/08/09/20190809183432_1767.jpg",
+                "http://mall03.sogoucdn.com/image/2019/08/09/20190809183431_1766.jpg"
+            ],
+            "defaultSkuAttributeCombination": "61:261",
+            "productId": 26028,
+            "defaultSkuId": 71838,
+            "guidePageUrl": "",
+            "video": [
+                "http://mall01.sogoucdn.com/video/2019/11/06/20191106171656_2189.mp4"
+            ],
+            "guaranteeTags": [
+                "搜狗自营",
+                "7天无理由退货",
+                "一年内保修"
+            ],
+            "name": "搜狗AI录音笔C1炫彩版 ",
+            "pcDetailDesc": "<p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/05/15/20190515103127_5002.png\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025184123_2169.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/25/20191025184132_2170.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/25/20191025184141_2171.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184151_2172.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025184201_2173.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184211_2174.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184219_2175.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025184227_2176.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184238_2177.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/25/20191025184249_2178.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184306_2179.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025152338_2168.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025184327_2180.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/25/20191025184336_2181.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><br></p>",
+            "state": 3,
+            "pcParamDesc": "",
+            "desc": "新老包装随机发货 购买即可参加送充电宝活动  高清录音 语音转文字 16G+云存储 免费转写 "
+        },
+        "shop": {
+            "name": "搜狗自营",
+            "shopId": 1
+        },
+        "attributeList": [
+            {
+                "attributeValueList": [
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 257,
+                        "attributeValueName": "明媚黄",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 259,
+                        "attributeValueName": "热烈红",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 261,
+                        "attributeValueName": "纯真白",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 263,
+                        "attributeValueName": "经典黑色",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 265,
+                        "attributeValueName": "经典蓝色",
+                        "classExtend": ""
+                    }
+                ],
+                "attribute": {
+                    "attributeId": 61,
+                    "attributeName": "颜色",
+                    "classExtend": ""
+                }
+            }
+        ],
+        "category": {
+            "name": "智能翻译",
+            "categoryId": 57
+        },
+        "systemTime": 1573561736514
+    }
+}

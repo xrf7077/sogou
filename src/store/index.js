@@ -29,6 +29,10 @@ const store = new Vuex.Store({
     },
     setCateData (state, data) {
       state.CateData = data
+    },
+    setIsTabbarShow (state, data) {
+      state.isTabbarShow = data
+      console.log(state.isTabbarShow)
     }
   },
   getters: {
@@ -37,6 +41,9 @@ const store = new Vuex.Store({
     },
     cateDataGetter (state) {
       return state.HomeData
+    },
+    isTabbarShowGetter (state) {
+      return state.isTabbarShow
     }
   }
 
