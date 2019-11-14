@@ -1,0 +1,119 @@
+{
+    "code": 0,
+    "data": {
+    "cateHome": [
+        {
+            "categoryId": "57",
+            "categoryName": "智能产品",
+            "categoryImage": "//mall01.sogoucdn.com/image/2019/01/10/20190110163819_4301.png",
+            "productList": [
+                {
+                    "productId": "17658",
+                    "name": "搜狗智能录音笔C1",
+                    "image": "//mall01.sogoucdn.com/image/2019/10/04/20191004211024_2027.jpeg",
+                    "salePrice": "398",
+                    "linePrice": "398"
+                },
+                {
+                    "productId": "17125",
+                    "name": "搜狗翻译宝Pro",
+                    "image": "//mall02.sogoucdn.com/image/2018/12/27/20181227141313_4287.png",
+                    "salePrice": "2499",
+                    "linePrice": "2499"
+                }
+            ]
+        },
+        {
+            "categoryId": "59",
+            "categoryName": "糖猫产品",
+            "categoryImage": "//mall02.sogoucdn.com/image/2019/01/10/20190110163906_4302.png",
+            "productList": [
+                {
+                    "productId": "12180",
+                    "name": "糖猫M2",
+                    "image": "//mall03.sogoucdn.com/image/2018/12/21/20181221190233_4185.png",
+                    "salePrice": "998",
+                    "linePrice": "998"
+                },
+                {
+                    "productId": "12503",
+                    "name": "糖猫Plus",
+                    "image": "//mall01.sogoucdn.com/image/2018/12/24/20181224215731_4278.jpg",
+                    "salePrice": "198",
+                    "linePrice": "198"
+                },
+                {
+                    "productId": "11907",
+                    "name": "糖猫E2",
+                    "image": "//mall03.sogoucdn.com/image/2018/12/21/20181221190346_4187.png",
+                    "salePrice": "398",
+                    "linePrice": "398"
+                },
+                {
+                    "productId": "12770",
+                    "name": "糖猫color",
+                    "image": "//mall02.sogoucdn.com/image/2018/12/21/20181221190434_4190.png",
+                    "salePrice": "298",
+                    "linePrice": "298"
+                },
+                {
+                    "productId": "12997",
+                    "name": "糖猫T3",
+                    "image": "//mall02.sogoucdn.com/image/2018/09/20/20180920172002_4028.jpg",
+                    "salePrice": "598",
+                    "linePrice": "598"
+                },
+                {
+                    "productId": "13393",
+                    "name": "糖猫在家R1",
+                    "image": "//mall01.sogoucdn.com/image/2018/12/21/20181221190721_4201.png",
+                    "salePrice": "798",
+                    "linePrice": "798"
+                }
+            ]
+        },
+        {
+            "categoryId": "61",
+            "categoryName": "配件",
+            "categoryImage": "//mall01.sogoucdn.com/image/2019/01/10/20190110163932_4303.png",
+            "productList": [
+                {
+                    "productId": "13999",
+                    "name": "糖猫学生儿童小书包",
+                    "image": "//mall01.sogoucdn.com/image/2018/12/24/20181224120137_4241.png",
+                    "salePrice": "99",
+                    "linePrice": "99"
+                },
+                {
+                    "productId": "14119",
+                    "name": "T2/basic专用原装表带",
+                    "image": "//mall01.sogoucdn.com/image/2018/09/04/20180904105255_3809.png",
+                    "salePrice": "80",
+                    "linePrice": "80"
+                },
+                {
+                    "productId": "14500",
+                    "name": "E1好友版专用表扣",
+                    "image": "//mall02.sogoucdn.com/image/2018/12/24/20181224120253_4244.png",
+                    "salePrice": "20",
+                    "linePrice": "20"
+                },
+                {
+                    "productId": "52",
+                    "name": "Color专用表带",
+                    "image": "//mall02.sogoucdn.com/image/2018/12/24/20181224120209_4242.png",
+                    "salePrice": "59",
+                    "linePrice": "59"
+                },
+                {
+                    "productId": "14395",
+                    "name": "Basic专用表扣",
+                    "image": "//mall02.sogoucdn.com/image/2018/12/24/20181224134504_4270.jpg",
+                    "salePrice": "25",
+                    "linePrice": "25"
+                }
+            ]
+        }
+    ]
+}
+}
