@@ -25,7 +25,7 @@
                 class="linePrice"
               >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>
               <div class="calcu">
-                <button @click="handleDel(data)">-</button>
+                <button @click="handleDel(data)" ref="minus">-</button>
                 <input type="text" :value="data.productNum" />
                 <button @click="data.productNum++">+</button>
               </div>
@@ -54,7 +54,7 @@
     <div class="sum">
       <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
-      <button class="sub-cart_1" v-show="$store.state.isCartSumShowed">删除</button>
+      <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
       <p v-show="$store.state.isCartSumShow">
         合计:
         <span>{{sum()}}</span>
@@ -69,76 +69,7 @@ export default {
     return {
       isAllChecked: false,
       checkgroup: [],
-      datalist: [
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'
-          ],
-          productId: 25885,
-          linePrice: 59800,
-          productNum: 1,
-          subTotal: 59800,
-          productState: 1,
-          productName: '糖猫Y1 能学口语的视频电话手表',
-          skuName: '粉色',
-          price: 59800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 71493,
-          selected: true
-        },
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'
-          ],
-          productId: 26028,
-          linePrice: 39800,
-          productNum: 1,
-          subTotal: 39800,
-          productState: 1,
-          productName: '搜狗AI录音笔C1炫彩版 ',
-          skuName: '纯真白',
-          price: 39800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 71838,
-          selected: true
-        },
-        {
-          image: [
-            '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'
-          ],
-          productId: 17125,
-          linePrice: 259900,
-          productNum: 1,
-          subTotal: 249900,
-          productState: 1,
-          productName: '搜狗翻译宝Pro',
-          skuName: '雅典灰',
-          price: 249900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 50106,
-          selected: false
-        },
-        {
-          image: [
-            '//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'
-          ],
-          productId: 21384,
-          linePrice: 19900,
-          productNum: 1,
-          subTotal: 19900,
-          productState: 1,
-          productName: '【双十一特价】糖猫Plus2 能变声讲故事的电话手表',
-          skuName: '蓝色',
-          price: 19900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 66105,
-          selected: false
-        }
-      ],
+      datalist: [{ 'image': ['//mall03.sogoucdn.com/image/2019/01/25/20190125180339_4463.jpg'], 'productId': 52, 'linePrice': 5900, 'productNum': 1, 'subTotal': 5900, 'productState': 1, 'productName': 'Color专用表带', 'skuName': '蓝色', 'price': 5900, 'stockNum': 10, 'shopId': 1, 'skuId': 54782, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/04/17/20190417153831_4742.jpg'], 'productId': 19608, 'linePrice': 6000, 'productNum': 1, 'subTotal': 6000, 'productState': 1, 'productName': '糖猫T2 卡通吊坠保护套', 'skuName': '蓝色', 'price': 6000, 'stockNum': 10, 'shopId': 1, 'skuId': 63743, 'selected': true }, { 'image': ['//mall01.sogoucdn.com/image/2019/04/17/20190417164338_4766.jpg'], 'productId': 13999, 'linePrice': 9900, 'productNum': 1, 'subTotal': 9900, 'productState': 1, 'productName': '糖猫学生儿童小书包', 'skuName': '颜色随机', 'price': 9900, 'stockNum': 10, 'shopId': 1, 'skuId': 55123, 'selected': true }, { 'image': ['//mall02.sogoucdn.com/image/2019/01/25/20190125142634_4391.jpg'], 'productId': 12180, 'linePrice': 99800, 'productNum': 1, 'subTotal': 99800, 'productState': 1, 'productName': '糖猫儿童智能电话手表M2', 'skuName': '蜜桃粉', 'price': 99800, 'stockNum': 10, 'shopId': 1, 'skuId': 51549, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'], 'productId': 25885, 'linePrice': 59800, 'productNum': 1, 'subTotal': 59800, 'productState': 1, 'productName': '糖猫Y1 能学口语的视频电话手表', 'skuName': '粉色', 'price': 59800, 'stockNum': 10, 'shopId': 1, 'skuId': 71493, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'], 'productId': 26028, 'linePrice': 39800, 'productNum': 1, 'subTotal': 39800, 'productState': 1, 'productName': '搜狗AI录音笔C1炫彩版 ', 'skuName': '纯真白', 'price': 39800, 'stockNum': 10, 'shopId': 1, 'skuId': 71838, 'selected': true }, { 'image': ['//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'], 'productId': 17125, 'linePrice': 259900, 'productNum': 1, 'subTotal': 249900, 'productState': 1, 'productName': '搜狗翻译宝Pro', 'skuName': '雅典灰', 'price': 249900, 'stockNum': 10, 'shopId': 1, 'skuId': 50106, 'selected': false }, { 'image': ['//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'], 'productId': 21384, 'linePrice': 19900, 'productNum': 1, 'subTotal': 19900, 'productState': 1, 'productName': '【双十一特价】糖猫Plus2 能变声讲故事的电话手表', 'skuName': '蓝色', 'price': 19900, 'stockNum': 10, 'shopId': 1, 'skuId': 66105, 'selected': false }],
       datalist1: [
         {
           image:
@@ -188,7 +119,7 @@ export default {
   },
   methods: {
     sum () {
-      console.log(this.checkgroup)
+      //   console.log(this.checkgroup)
       var sum = 0
       for (var i in this.checkgroup) {
         sum += this.checkgroup[i].productNum * this.checkgroup[i].price
@@ -213,8 +144,25 @@ export default {
     handleDel (data) {
       data.productNum--
       if (data.productNum === 0) {
-        alert('aa')
         data.productNum = 1
+        console.log(this.$refs.minus)
+      }
+    },
+    handleListDel () {
+      var checkgroup = this.checkgroup
+      var datalist = this.datalist
+      var indexList = []
+      for (var i = 0; i < checkgroup.length; i++) {
+        var index = datalist.indexOf(checkgroup[i])
+        if (index !== -1) {
+          indexList.push(index)
+        }
+      }
+      console.log(indexList)
+      for (var j = indexList.length - 1; j > -1; j--) {
+        console.log(indexList[j])
+        console.log(datalist)
+        datalist.splice(indexList[j], 1)
       }
     },
     edit () {
@@ -235,8 +183,8 @@ export default {
   h2 {
     text-align: center;
     font-size: 1rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
     font-weight: 400;
   }
   #cart {
@@ -450,7 +398,11 @@ export default {
       right: 1rem;
       transform: translateY(-50%);
       background: white;
+      outline: none;
     }
   }
+}
+.minHidden {
+  display: none;
 }
 </style>
