@@ -12,9 +12,7 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 export default {
   mounted () {
-    /* eslint-disable */
     new Swiper('.ironman', this.options)
-    /* eslint-disable */
   },
   props: ['options', 'classname']
 }
