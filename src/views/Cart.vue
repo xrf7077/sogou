@@ -1,6 +1,8 @@
 <template>
   <div id="box">
-    <h2>购物车</h2>
+    <div class="top">
+      <h2>购物车</h2>
+    </div>
     <div id="cart">
       <div class="up">
         <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
@@ -11,7 +13,14 @@
       <ul>
         <li v-for="data in datalist" :key="data.productId">
           <div class="i-select">
-            <input type="checkbox" v-model="checkgroup" :value="data" @change="handleItemChange" :id="data.productId" hidden/>
+            <input
+              type="checkbox"
+              v-model="checkgroup"
+              :value="data"
+              @change="handleItemChange"
+              :id="data.productId"
+              hidden
+            />
             <label :for="data.productId"></label>
           </div>
           <dl>
@@ -24,7 +33,7 @@
               <span class="price">¥:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
               <!-- <span
                 class="linePrice"
-              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span> -->
+              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>-->
               <div class="calcu">
                 <button @click="handleDel(data)" ref="minus">-</button>
                 <input type="text" :value="data.productNum" />
@@ -53,7 +62,8 @@
       </div>
     </nav>
     <div class="sum">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked"/><span>全选</span>
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
+      <span>全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
       <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
       <p v-show="$store.state.isCartSumShow">
@@ -71,7 +81,144 @@ export default {
     return {
       isAllChecked: false,
       checkgroup: [],
-      datalist: [{ 'image': ['//mall03.sogoucdn.com/image/2019/01/25/20190125180339_4463.jpg'], 'productId': 52, 'linePrice': 5900, 'productNum': 1, 'subTotal': 5900, 'productState': 1, 'productName': 'Color专用表带', 'skuName': '蓝色', 'price': 5900, 'stockNum': 10, 'shopId': 1, 'skuId': 54782, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/04/17/20190417153831_4742.jpg'], 'productId': 19608, 'linePrice': 6000, 'productNum': 1, 'subTotal': 6000, 'productState': 1, 'productName': '糖猫T2 卡通吊坠保护套', 'skuName': '蓝色', 'price': 6000, 'stockNum': 10, 'shopId': 1, 'skuId': 63743, 'selected': true }, { 'image': ['//mall01.sogoucdn.com/image/2019/04/17/20190417164338_4766.jpg'], 'productId': 13999, 'linePrice': 9900, 'productNum': 1, 'subTotal': 9900, 'productState': 1, 'productName': '糖猫学生儿童小书包', 'skuName': '颜色随机', 'price': 9900, 'stockNum': 10, 'shopId': 1, 'skuId': 55123, 'selected': true }, { 'image': ['//mall02.sogoucdn.com/image/2019/01/25/20190125142634_4391.jpg'], 'productId': 12180, 'linePrice': 99800, 'productNum': 1, 'subTotal': 99800, 'productState': 1, 'productName': '糖猫儿童智能电话手表M2', 'skuName': '蜜桃粉', 'price': 99800, 'stockNum': 10, 'shopId': 1, 'skuId': 51549, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'], 'productId': 25885, 'linePrice': 59800, 'productNum': 1, 'subTotal': 59800, 'productState': 1, 'productName': '糖猫Y1 能学口语的视频电话手表', 'skuName': '粉色', 'price': 59800, 'stockNum': 10, 'shopId': 1, 'skuId': 71493, 'selected': true }, { 'image': ['//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'], 'productId': 26028, 'linePrice': 39800, 'productNum': 1, 'subTotal': 39800, 'productState': 1, 'productName': '搜狗AI录音笔C1炫彩版 ', 'skuName': '纯真白', 'price': 39800, 'stockNum': 10, 'shopId': 1, 'skuId': 71838, 'selected': true }, { 'image': ['//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'], 'productId': 17125, 'linePrice': 259900, 'productNum': 1, 'subTotal': 249900, 'productState': 1, 'productName': '搜狗翻译宝Pro', 'skuName': '雅典灰', 'price': 249900, 'stockNum': 10, 'shopId': 1, 'skuId': 50106, 'selected': false }, { 'image': ['//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'], 'productId': 21384, 'linePrice': 19900, 'productNum': 1, 'subTotal': 19900, 'productState': 1, 'productName': '【双十一特价】糖猫Plus2 能变声讲故事的电话手表', 'skuName': '蓝色', 'price': 19900, 'stockNum': 10, 'shopId': 1, 'skuId': 66105, 'selected': false }],
+      datalist: [
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/01/25/20190125180339_4463.jpg'
+          ],
+          productId: 52,
+          linePrice: 5900,
+          productNum: 1,
+          subTotal: 5900,
+          productState: 1,
+          productName: 'Color专用表带',
+          skuName: '蓝色',
+          price: 5900,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 54782,
+          selected: true
+        },
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/04/17/20190417153831_4742.jpg'
+          ],
+          productId: 19608,
+          linePrice: 6000,
+          productNum: 1,
+          subTotal: 6000,
+          productState: 1,
+          productName: '糖猫T2 卡通吊坠保护套',
+          skuName: '蓝色',
+          price: 6000,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 63743,
+          selected: true
+        },
+        {
+          image: [
+            '//mall01.sogoucdn.com/image/2019/04/17/20190417164338_4766.jpg'
+          ],
+          productId: 13999,
+          linePrice: 9900,
+          productNum: 1,
+          subTotal: 9900,
+          productState: 1,
+          productName: '糖猫学生儿童小书包',
+          skuName: '颜色随机',
+          price: 9900,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 55123,
+          selected: true
+        },
+        {
+          image: [
+            '//mall02.sogoucdn.com/image/2019/01/25/20190125142634_4391.jpg'
+          ],
+          productId: 12180,
+          linePrice: 99800,
+          productNum: 1,
+          subTotal: 99800,
+          productState: 1,
+          productName: '糖猫儿童智能电话手表M2',
+          skuName: '蜜桃粉',
+          price: 99800,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 51549,
+          selected: true
+        },
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'
+          ],
+          productId: 25885,
+          linePrice: 59800,
+          productNum: 1,
+          subTotal: 59800,
+          productState: 1,
+          productName: '糖猫Y1 能学口语的视频电话手表',
+          skuName: '粉色',
+          price: 59800,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 71493,
+          selected: true
+        },
+        {
+          image: [
+            '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'
+          ],
+          productId: 26028,
+          linePrice: 39800,
+          productNum: 1,
+          subTotal: 39800,
+          productState: 1,
+          productName: '搜狗AI录音笔C1炫彩版 ',
+          skuName: '纯真白',
+          price: 39800,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 71838,
+          selected: true
+        },
+        {
+          image: [
+            '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'
+          ],
+          productId: 17125,
+          linePrice: 259900,
+          productNum: 1,
+          subTotal: 249900,
+          productState: 1,
+          productName: '搜狗翻译宝Pro',
+          skuName: '雅典灰',
+          price: 249900,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 50106,
+          selected: false
+        },
+        {
+          image: [
+            '//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'
+          ],
+          productId: 21384,
+          linePrice: 19900,
+          productNum: 1,
+          subTotal: 19900,
+          productState: 1,
+          productName: '【双十一特价】糖猫Plus2 能变声讲故事的电话手表',
+          skuName: '蓝色',
+          price: 19900,
+          stockNum: 10,
+          shopId: 1,
+          skuId: 66105,
+          selected: false
+        }
+      ],
       datalist1: [
         {
           image:
@@ -180,23 +327,31 @@ export default {
 <style lang="scss" scoped>
 #box {
   background: white;
-  h2 {
-    text-align: center;
-    font-size: 1rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    font-weight: 400;
+  .top {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      height: 2.13rem;
+      line-height: 2.13rem;
+      font-size: .5rem;
+      background:#f5f5f5;
+      z-index:1;
+    h2 {
+      text-align: center;
+      font-weight: 400;
+    }
   }
   #cart {
     background: white;
+    margin-top: 2.5rem;
     .up {
       height: 2rem;
       line-height: 2rem;
       border-top: 0.01rem solid #ccc;
       border-bottom: 0.01rem solid #ccc;
       font-size: 0.6rem;
-      position:relative;
-      .up_a{
+      position: relative;
+      .up_a {
         margin-left: 1.7rem;
       }
       input {
@@ -221,7 +376,7 @@ export default {
     ul {
       li {
         .i-select {
-          width: .7rem;
+          width: 0.7rem;
           height: 4.57rem;
           float: left;
           margin-left: 4%;
@@ -235,7 +390,7 @@ export default {
             top: 50%;
             transform: translateY(-50%);
           }
-          label{
+          label {
             margin-left: 4%;
             position: absolute;
             top: 50%;
@@ -375,7 +530,7 @@ export default {
     font-size: 0.59733rem;
     background: white;
     padding-left: 4%;
-    .bottom{
+    .bottom {
       width: 100%;
       height: 1.3rem;
       background: #f5f5f5;
@@ -422,8 +577,8 @@ export default {
     }
   }
 }
-input[type="checkbox"]+label::before {
-  content: '';
+input[type="checkbox"] + label::before {
+  content: "";
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -431,9 +586,9 @@ input[type="checkbox"]+label::before {
   margin-right: 5px;
   background-clip: content-box;
   border-radius: 50%;
-  border:0.05rem solid gray;
+  border: 0.05rem solid gray;
 }
-input[type="checkbox"]:checked+label::before {
+input[type="checkbox"]:checked + label::before {
   background-color: red;
 }
 </style>
