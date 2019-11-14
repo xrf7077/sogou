@@ -4,14 +4,15 @@
     <div id="cart">
       <div class="up">
         <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
-        <span>全选</span>
+        <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
         <div @click="edited" v-show="$store.state.isCartSumShowed">完成</div>
       </div>
       <ul>
         <li v-for="data in datalist" :key="data.productId">
           <div class="i-select">
-            <input type="checkbox" v-model="checkgroup" :value="data" @change="handleItemChange" />
+            <input type="checkbox" v-model="checkgroup" :value="data" @change="handleItemChange" :id="data.productId" hidden/>
+            <label :for="data.productId"></label>
           </div>
           <dl>
             <dt>
@@ -20,10 +21,10 @@
             <dd>
               <p class="name">{{data.productName}}</p>
               <p class="color">商品颜色:{{data.skuName}}</p>
-              <span class="price">单价:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
-              <span
+              <span class="price">¥:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
+              <!-- <span
                 class="linePrice"
-              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>
+              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span> -->
               <div class="calcu">
                 <button @click="handleDel(data)" ref="minus">-</button>
                 <input type="text" :value="data.productNum" />
@@ -52,13 +53,14 @@
       </div>
     </nav>
     <div class="sum">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked" />全选
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked"/><span>全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
       <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
       <p v-show="$store.state.isCartSumShow">
         合计:
         <span>{{sum()}}</span>
       </p>
+      <div class="bottom"></div>
     </div>
   </div>
 </template>
@@ -121,7 +123,7 @@ export default {
     sum () {
       //   console.log(this.checkgroup)
       var sum = 0
-      for (var i in this.checkgroup) {
+      for (var i = 0; i < this.checkgroup.length; i++) {
         sum += this.checkgroup[i].productNum * this.checkgroup[i].price
       }
       sum = sum / 100 + '.' + sum.toString().slice(-2)
@@ -158,12 +160,10 @@ export default {
           indexList.push(index)
         }
       }
-      console.log(indexList)
       for (var j = indexList.length - 1; j > -1; j--) {
-        console.log(indexList[j])
-        console.log(datalist)
         datalist.splice(indexList[j], 1)
       }
+      this.checkgroup = []
     },
     edit () {
       this.$store.commit('hideCartSum')
@@ -195,11 +195,16 @@ export default {
       border-top: 0.01rem solid #ccc;
       border-bottom: 0.01rem solid #ccc;
       font-size: 0.6rem;
+      position:relative;
+      .up_a{
+        margin-left: 1.7rem;
+      }
       input {
         margin-left: 4%;
         margin-right: 3%;
-        height: 2rem;
-        line-height: 2rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         float: left;
       }
       span {
@@ -216,16 +221,25 @@ export default {
     ul {
       li {
         .i-select {
-          line-height: 3.4rem;
-          height: 3.4rem;
+          width: .7rem;
+          height: 4.57rem;
           float: left;
           margin-left: 4%;
           margin-right: 2%;
+          position: relative;
           input {
             float: left;
             line-height: 3.4rem;
-            height: 4.9rem;
             margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          label{
+            margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
         dl {
@@ -256,6 +270,7 @@ export default {
               position: absolute;
               bottom: 0;
               float: left;
+              color: red;
             }
             .calcu {
               position: absolute;
@@ -340,7 +355,7 @@ export default {
       }
     }
     .bottom {
-      height: 2.58rem;
+      height: 2.68rem;
       float: left;
       width: 100%;
       text-align: center;
@@ -348,18 +363,23 @@ export default {
       color: #bfbfbf;
       font-size: 0.5rem;
       line-height: 1.34rem;
-      margin-bottom: 3.47rem;
+      margin-bottom: 3.57rem;
     }
   }
   .sum {
     position: fixed;
-    bottom: 53px;
+    bottom: 2.73rem;
     width: 96%;
-    height: 2.2rem;
+    height: 2.3rem;
     line-height: 2.2rem;
     font-size: 0.59733rem;
     background: white;
     padding-left: 4%;
+    .bottom{
+      width: 100%;
+      height: 1.3rem;
+      background: #f5f5f5;
+    }
 
     p {
       float: right;
@@ -379,7 +399,7 @@ export default {
     }
     .sub-cart {
       width: 5rem;
-      height: 100%;
+      height: 2.2rem;
       text-align: center;
       color: white;
       float: right;
@@ -402,7 +422,18 @@ export default {
     }
   }
 }
-.minHidden {
-  display: none;
+input[type="checkbox"]+label::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  padding: 2px;
+  margin-right: 5px;
+  background-clip: content-box;
+  border-radius: 50%;
+  border:0.05rem solid gray;
+}
+input[type="checkbox"]:checked+label::before {
+  background-color: red;
 }
 </style>

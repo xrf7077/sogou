@@ -9,7 +9,8 @@ const store = new Vuex.Store({
     CateData: null,
     isTabbarShow: true,
     isCartSumShow: true,
-    isCartSumShowed: false
+    isCartSumShowed: false,
+    isMyShow: true
   },
   actions: {
     getHomeData (store) {

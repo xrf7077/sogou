@@ -6,19 +6,19 @@
       <span>全部订单</span>
     </p>
     <ul>
-      <router-link tag="li" to="/payment" @click="handleClcick(Payment)">
+      <router-link tag="li" to="/Order" >
         <img src="@/assets/imgs/payment.png" />
         待付款
       </router-link>
-      <router-link tag="li" to="/deliver" @click="handleClcick(Deliver)">
+      <router-link tag="li" to="/Order" >
         <img src="@/assets/imgs/Deliver.png" />
         待发货
       </router-link>
-      <router-link tag="li" to="/receiving" @click="handleClcick(Receiving)">
+      <router-link tag="li" to="/Order" >
         <img src="@/assets/imgs/Receiving.png" />
         待收货
       </router-link>
-      <router-link tag="li" to="/after_sale" @click="handleClcick(After_sale)">
+      <router-link tag="li" to="/Order" >
         <img src="@/assets/imgs/After_sale.png" />
         退款/售后
       </router-link>
@@ -27,7 +27,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+
+}
 </script>
 
 <style lang="scss" scoped>
