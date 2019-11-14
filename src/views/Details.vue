@@ -1,11 +1,11 @@
 <template>
   <div>
     <header v-if="detail">
-      <swiper id="banner" :options="options" :cName="cName" :pagination="pagination">
+      <swp id="banner" :options="options" :cName="cName" :pagination="pagination">
         <div class="swiper-slide" v-for="(data,i) in detail.data.product.image" :key="i">
           <img :src="data" alt srcset />
         </div>
-      </swiper>
+      </swp>
       <div v-if="this.isPlayerShow" class="player-container">
         <div class="closePlayer" @click="isPlayerShow=false">&chi;</div>
         <video
@@ -90,7 +90,7 @@
 
 <script>
 import Axios from 'axios'
-import swiper from '@/components/Swiper'
+import swp from '@/components/DetailSwiper'
 export default {
   data () {
     return {
@@ -137,7 +137,7 @@ export default {
     this.$store.commit('showTabbar')
   },
   components: {
-    swiper
+    swp
   },
   methods: {
     toHome () {
@@ -184,6 +184,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.ironman{
+  display: none;
+}
 .modal {
   position: fixed;
   left: 0;
