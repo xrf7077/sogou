@@ -9,43 +9,33 @@
       </div>
     </swiper>
     <ul class="list">
-      <li>
-        <img src="https://mall01.sogoucdn.com/image/2019/05/15/20190515150607_5004.png" alt />
-        <p>畅销产品</p>
-      </li>
-      <li>
-        <img src="https://mall02.sogoucdn.com/image/2019/05/15/20190515150631_5005.png" alt />
-        <p>翻译产品</p>
-      </li>
-      <li>
-        <img src="https://mall02.sogoucdn.com/image/2019/05/15/20190515150640_5006.png" alt />
-        <p>糖猫产品</p>
-      </li>
-      <li>
-        <img src="https://mall02.sogoucdn.com/image/2019/05/15/20190515150650_5007.png" alt />
-        <p>糖猫配件</p>
+      <li v-for="(data,i) in navList" :key="i" @click="clickRouter(data.link)">
+        <img :src="data.img" alt=""/>
+        <p>{{data.title}}</p>
       </li>
     </ul>
-    <swiper>
+    <swiper class="swiper_2" v-if="datawords.length">
       <div class="swiper-slide">
-        <p v-for="(data,i) in datawords" :key="i">{{data.i}}</p>
+        <p v-for="(data,i) in datawords" :key="i">
+          <span class="iconfont icon-xiaolaba"></span>
+          {{data.title}}</p>
       </div>
     </swiper>
     <ul class="list_1">
       <li v-for="(data,i) in dataList_1" :key="i" @click="handleClick(data.id)">
         <img :src="data.img" alt />
         <p>{{data.title}}</p>
-        <p class="desc">{{data.desc}}</p>
+        <div class="desc">{{data.desc}}</div>
         <span>
           ￥{{data.price}}
-          <i class="iconfont icon-gouwuche"></i>
+          <i class="iconfont icon-qicheqianlian-"></i>
         </span>
       </li>
     </ul>
     <div class="list_2">
       <p>
         <span>糖猫产品</span>
-        <a href>查看更多</a>
+        <a href="">查看更多</a>
       </p>
       <div v-for="(data,i) in picture" :key="i">
         <img :src="data.img" alt />
@@ -56,7 +46,27 @@
             <p>{{data.desc}}</p>
             <span>
               ￥{{data.price}}
-              <i class="iconfont icon-gouwuche"></i>
+              <i class="iconfont icon-qicheqianlian-"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="list_3">
+      <p>
+        <span>糖猫配件</span>
+        <a href>查看更多</a>
+      </p>
+      <div v-for="(data,i) in list_3List" :key="i">
+        <img :src="data.img" alt />
+        <ul class="productList">
+          <li v-for="(data,i) in productList_1" :key="i" @click="handleClick(data.id)">
+            <img :src="data.img" alt />
+            <div>{{data.title}}</div>
+            <p>{{data.desc}}</p>
+            <span>
+              ￥{{data.price}}
+              <i class="iconfont icon-qicheqianlian-"></i>
             </span>
           </li>
         </ul>
@@ -72,26 +82,15 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      datawords: [
-        '搜狗AI录音笔首发，语音转文字，新华社记者强烈推荐',
-        '搜狗翻译宝Pro，63种语言，200多个国家，走遍世间都不怕'
-      ],
+      datawords: [],
       dataList: [],
       dataList_1: [],
       picture: [],
-      bigOptions: {
+      list_3List: [],
+      productList: [],
+      navList: [],
+      options: {
         // direction: 'vertical',
-        loop: true,
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: '.swiper-pagination'
-        }
-      },
-      smallOptions: {
-        direction: 'vertical',
         loop: true,
         autoplay: {
           delay: 2500,
@@ -108,23 +107,16 @@ export default {
   },
   mounted () {
     axios({
-      url: '/json/mobile/topic-home.json?c=h5&s=20000&t=1573607790145&v=1.0'
+      url: 'json/mobile/topic-home.json?c=h5&s=20000&t=1573633887668&v=1.0'
     }).then(res => {
       this.dataList = res.data.data.mods[0].list
-      // console.log(this.dataList)
-    })
-    axios({
-      url: 'json/mobile/topic-home.json?c=h5&s=20000&t=1573633887668&v=1.0'
-    }).then(res => {
+      this.navList = res.data.data.mods[2].list
+      this.datawords = res.data.data.mods[4].list
       this.dataList_1 = res.data.data.mods[7].list
-      // console.log(res.data.data.mods[7].list)
-    })
-    axios({
-      url: 'json/mobile/topic-home.json?c=h5&s=20000&t=1573633887668&v=1.0'
-    }).then(res => {
-      // console.log(res.data.data.mods[11].list)
       this.picture = res.data.data.mods[11].list
       this.productList = res.data.data.mods[13].list
+      this.list_3List = res.data.data.mods[17].list
+      this.productList_1 = res.data.data.mods[19].list
     })
     if (!this.$store.state.HomeData) {
       this.$store.dispatch('getHomeData')
@@ -135,7 +127,12 @@ export default {
   methods: {
     handleClick (id) {
       console.log(id)
-      this.$router.push(`/Details/${id}`)
+      // this.$router.push(`/Details/${id}`)
+    },
+    clickRouter (id) {
+      var newId = id.substring(25)
+      console.log(newId)
+      // this.$router.push(`/Cate/${newId}`)
     }
   },
   computed: {
@@ -146,6 +143,7 @@ export default {
 
 <style lang="scss" scoped>
 .total {
+  background: #fff;
   h1 {
     width: 100%;
     height: 47px;
@@ -192,7 +190,23 @@ export default {
       }
     }
   }
+  .swiper_2{
+     width:340px;
+      height:30px;
+      margin:10px 10px 0;
+      background: gray;
+    .swiper-slide{
+      line-height:30px;
+      p{
+        font-size:12px;
+      span{
+        color:red
+      }
+      }
+    }
+  }
   .list_1 {
+    margin-top:15px;
     width: 100%;
     list-style: none;
     overflow: hidden;
@@ -208,7 +222,7 @@ export default {
       }
       p {
         width: 165px;
-        // text-align: center;
+        height:13px;
         font-size: 13px;
         font-weight: 700;
       }
@@ -234,7 +248,6 @@ export default {
     p {
       height: 36px;
       line-height: 36px;
-      background: #fff;
       span {
         font-size: 15px;
         font-weight: 700;
@@ -287,6 +300,28 @@ export default {
           float: right;
         }
       }
+    }
+  }
+  .list_3 {
+    width: 100%;
+    p {
+      height: 36px;
+      line-height: 36px;
+      span {
+        font-size: 15px;
+        font-weight: 700;
+        margin-left: 5px;
+      }
+      a {
+        font-size: 12px;
+        color: #8c8c8c;
+        text-decoration: none;
+        margin-left: 190px;
+      }
+    }
+    img {
+      width: 100%;
+      height: 134px;
     }
   }
 }
