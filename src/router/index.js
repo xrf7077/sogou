@@ -17,6 +17,10 @@ import Gift from '../views/my/Assets/Gift.vue'
 import Address from '../views/my/Assets/Address.vue'
 import Opinion from '../views/my/Assets/Opinion.vue'
 import Shopping from '../views/my/Assets/Shopping.vue'
+import order from '../views/Order.vue'
+import notUsed from '../views/my/Assets/coupon/not_used.vue'
+import Already from '../views/my/Assets/coupon/Already_used.vue'
+import Overdue from '../views/my/Assets/coupon/Overdue.vue'
 
 Vue.use(VueRouter)
 
@@ -49,24 +53,22 @@ const routes = [{
   component: Details
 },
 {
-  path: '/payment',
-  component: Payment
-},
-{
-  path: '/deliver',
-  component: Deliver
-},
-{
-  path: '/receiving',
-  component: Receiving
-},
-{
-  path: '/after_sale',
-  component: After
-},
-{
   path: '/coupon',
-  component: Coupon
+  component: Coupon,
+  children: [
+    {
+      path: 'not_used',
+      component: notUsed
+    },
+    {
+      path: 'Already',
+      component: Already
+    },
+    {
+      path: 'Overdue',
+      component: Overdue
+    }
+  ]
 },
 {
   path: '/code',
@@ -91,6 +93,28 @@ const routes = [{
 {
   path: '/shopping',
   component: Shopping
+},
+{
+  path: '/order',
+  component: order,
+  children: [
+    {
+      path: 'payment',
+      component: Payment
+    },
+    {
+      path: 'deliver',
+      component: Deliver
+    },
+    {
+      path: 'receiving',
+      component: Receiving
+    },
+    {
+      path: 'after_sale',
+      component: After
+    }
+  ]
 }
 ]
 
