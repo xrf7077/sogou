@@ -43,16 +43,20 @@ export default {
 <style lang="scss" scoped>
 #main {
   background: #fff;
-
 }
 header {
-  height: 48px;
+  width: 100%;
+  height: 2.048rem;
   text-align: center;
-  line-height: 50px;
+  line-height: 2.048rem;
   font-size: 18px;
-  background: #fff
+  background: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 100;
 }
 .banner {
+  margin-top: 1.9rem;
   height: 180px;
   background: url("../assets/imgs/banner.png");
   background-size: 100% 100%;
