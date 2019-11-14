@@ -5,7 +5,8 @@
     </div>
     <div id="cart">
       <div class="up">
-        <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
+        <input type="checkbox" @change="handleChange" v-model="isAllChecked" :id = "allChecked"/>
+        <label :for="allChecked"></label>
         <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
         <div @click="edited" v-show="$store.state.isCartSumShowed">完成</div>
@@ -62,8 +63,9 @@
       </div>
     </nav>
     <div class="sum">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked" />
-      <span>全选</span>
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked" :id="allChecked"/>
+      <label :for="allChecked"></label>
+      <span class="span1">全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
       <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
       <p v-show="$store.state.isCartSumShow">
@@ -331,7 +333,7 @@ export default {
       position: fixed;
       width: 100%;
       top: 0;
-      height: 2.13rem;
+      height: 2.3rem;
       line-height: 2.13rem;
       font-size: .5rem;
       background:#f5f5f5;
@@ -339,29 +341,39 @@ export default {
     h2 {
       text-align: center;
       font-weight: 400;
+      height: 2.3rem;
+      background:#f5f5f5;
+
     }
   }
   #cart {
     background: white;
-    margin-top: 2.5rem;
+    margin-top: 2.13rem;
     .up {
       height: 2rem;
       line-height: 2rem;
-      border-top: 0.01rem solid #ccc;
-      border-bottom: 0.01rem solid #ccc;
+      border-top: 0.01rem solid #f5f5f5;
+      border-bottom: 0.01rem solid #f5f5f5;
       font-size: 0.6rem;
       position: relative;
       .up_a {
         margin-left: 1.7rem;
       }
       input {
-        margin-left: 4%;
-        margin-right: 3%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        float: left;
-      }
+            float: left;
+            line-height: 3.4rem;
+            margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+          }
+          label {
+            margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
       span {
         height: 2rem;
         line-height: 2rem;
@@ -401,11 +413,11 @@ export default {
           height: 3.57rem;
           padding-top: 0.65rem;
           padding-bottom: 0.65rem;
-          border-bottom: 0.01rem solid #ccc;
+          border-bottom: 0.01rem solid #f5f5f5;
           dt {
             width: 3.47rem;
             height: 3.47rem;
-            border: 0.05rem solid #ccc;
+            border: 0.05rem solid #f5f5f5;
             float: left;
 
             img {
@@ -523,19 +535,14 @@ export default {
   }
   .sum {
     position: fixed;
-    bottom: 2.73rem;
+    bottom: 2.1rem;
     width: 96%;
     height: 2.3rem;
     line-height: 2.2rem;
     font-size: 0.59733rem;
     background: white;
     padding-left: 4%;
-    .bottom {
-      width: 100%;
-      height: 1.3rem;
-      background: #f5f5f5;
-    }
-
+    border-bottom: 1px solid #f5f5f5;
     p {
       float: right;
       color: black;
@@ -546,12 +553,25 @@ export default {
         color: red;
       }
     }
-    input {
-      float: left;
-      color: black;
-      height: 2.2rem;
-      margin-right: 0.5rem;
-    }
+          input {
+            float: left;
+            line-height: 3.4rem;
+            margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+          }
+          label {
+            margin-left: 4%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .span1{
+            margin-left:1.7rem
+          }
+
     .sub-cart {
       width: 5rem;
       height: 2.2rem;
@@ -561,7 +581,7 @@ export default {
       background: red;
     }
     .sub-cart_1 {
-      border: 0.04rem solid #ccc;
+      border: 0.04rem solid #f5f5f5;
       border-radius: 1rem;
       width: 3.5rem;
       font-size: 0.6rem;

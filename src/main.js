@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import MintUI from 'mint-ui'
 // 林佳琛加入了这一行,引入mint-ui
-import '_mint-ui/lib/style.css' // 引入mint-ui
+import 'mint-ui/lib/style.css' // 引入mint-ui
 
 Vue.use(MintUI) // 引入mint-ui
 Vue.config.productionTip = false
