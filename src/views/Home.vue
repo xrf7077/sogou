@@ -127,7 +127,7 @@ export default {
   methods: {
     handleClick (id) {
       console.log(id)
-      // this.$router.push(`/Details/${id}`)
+      this.$router.push(`/Details/${id}`)
     },
     clickRouter (id) {
       var newId = id.substring(25)

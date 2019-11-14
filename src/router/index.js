@@ -33,7 +33,7 @@ const routes = [{
   component: Home
 },
 {
-  path: '/Cate/:newId',
+  path: '/Cate',
   component: Cate
 },
 {
