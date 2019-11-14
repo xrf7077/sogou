@@ -43,6 +43,17 @@ const store = new Vuex.Store({
     },
     hideCartSumed (state) {
       state.isCartSumShowed = false
+    },
+    setIsTabbarShow (state, data) {
+      state.isTabbarShow = data
+    },
+    showTabbar (state) {
+      state.isTabbarShow = true
+      console.log(state.isTabbarShow)
+    },
+    hideTabbar (state) {
+      state.isTabbarShow = false
+      console.log(state.isTabbarShow)
     }
 
   },
@@ -52,6 +63,9 @@ const store = new Vuex.Store({
     },
     cateDataGetter (state) {
       return state.HomeData
+    },
+    isTabbarShowGetter (state) {
+      return state.isTabbarShow
     }
   }
 
