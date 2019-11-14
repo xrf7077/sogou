@@ -5,8 +5,8 @@
     </div>
     <div id="cart">
       <div class="up">
-        <input type="checkbox" @change="handleChange" v-model="isAllChecked" :id = "allChecked"/>
-        <label :for="allChecked"></label>
+        <input type="checkbox" @change="handleChange" v-model="isAllChecked" id = "allChecked"/>
+        <label for="allChecked"></label>
         <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
         <div @click="edited" v-show="$store.state.isCartSumShowed">完成</div>
@@ -36,9 +36,11 @@
                 class="linePrice"
               >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>-->
               <div class="calcu">
-                <button @click="handleDel(data)" ref="minus">-</button>
+                <span @click="handleDel(data)" ref="minus" class="iconfont icon-jian
+"></span>
                 <input type="text" :value="data.productNum" />
-                <button @click="data.productNum++">+</button>
+                <span @click="data.productNum++" class="iconfont icon-jia
+"></span>
               </div>
             </dd>
           </dl>
@@ -63,8 +65,8 @@
       </div>
     </nav>
     <div class="sum">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked" :id="allChecked"/>
-      <label :for="allChecked"></label>
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked"/>
+      <label for="allChecked"></label>
       <span class="span1">全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
       <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
