@@ -23,6 +23,9 @@ export default {
   beforeCreate () {
     this.$store.state.isTabbarShow = false
   },
+  destroyed () {
+    this.$store.state.isTabbarShow = true
+  },
   methods: {
     handleClick () {
       this.$router.push('/my')
