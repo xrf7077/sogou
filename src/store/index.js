@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         })
     },
     getCateData (store) {
-      Axios(`json/mobile/cate-home.json?c=h5&s=1000500017&t=1573549265503&v=1.0`)
+      Axios(`/json/mobile/cate-home.json?c=h5&s=20000&t=1573714303936&v=1.0`)
         .then(res => {
           store.commit('setCateData', res.data)
         })
@@ -32,6 +32,7 @@ const store = new Vuex.Store({
     },
     setCateData (state, data) {
       state.CateData = data
+      console.log(state.CateData)
     },
     showCartSum (state) {
       state.isCartSumShow = true
@@ -44,6 +45,15 @@ const store = new Vuex.Store({
     },
     hideCartSumed (state) {
       state.isCartSumShowed = false
+    },
+    setIsTabbarShow (state, data) {
+      state.isTabbarShow = data
+    },
+    showTabbar (state) {
+      state.isTabbarShow = true
+    },
+    hideTabbar (state) {
+      state.isTabbarShow = false
     }
 
   },
@@ -52,7 +62,10 @@ const store = new Vuex.Store({
       return state.HomeData
     },
     cateDataGetter (state) {
-      return state.HomeData
+      return state.CateData
+    },
+    isTabbarShowGetter (state) {
+      return state.isTabbarShow
     }
   }
 

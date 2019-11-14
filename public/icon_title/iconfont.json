@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "4149871",
+      "name": "搜狗",
+      "font_class": "sougou",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    }
+  ]
+}

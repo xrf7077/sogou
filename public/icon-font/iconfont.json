@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6322723",
+      "name": "小喇叭",
+      "font_class": "xiaolaba",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "7449356",
+      "name": "购物车-23",
+      "font_class": "qicheqianlian-",
+      "unicode": "e505",
+      "unicode_decimal": 58629
+    }
+  ]
+}
