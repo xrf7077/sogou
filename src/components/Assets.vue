@@ -1,7 +1,7 @@
 <template>
   <div class="Assets">
     <ul>
-      <router-link tag="li" to="/coupon">
+      <router-link tag="li" to="/coupon/not_used">
         <img src="@/assets/imgs/coupon.png" alt />
         <p>我的优惠券</p>
         <span>></span>
@@ -26,11 +26,11 @@
         <p>地址管理</p>
         <span>></span>
       </router-link>
-      <router-link tag="li" to="opinion">
+      <li @click="handleTo">
         <img src="@/assets/imgs/opinion.png" alt />
         <p>意见反馈</p>
         <span>></span>
-      </router-link>
+      </li>
       <router-link tag="li" to="shopping">
         <img src="@/assets/imgs/shopping.png" alt />
         <p>关于商城</p>
@@ -41,7 +41,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    handleTo () {
+      window.open('https://chat56.live800.com/live800/chatClient/chatbox.jsp?companyID=1056730&configID=195273&jid=9447871852&s=1&info=userId%3D51633%26name%3D51633')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
