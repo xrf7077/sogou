@@ -26,8 +26,7 @@ export default {
   components: {
     Assets,
     Order
-  }
-  // mounted () {
+  } // mounted () {
   //   Axios({
   //     method: 'post',
   //     url: '/api/user/baseInfo/get_user_detail',

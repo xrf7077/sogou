@@ -1,15 +1,20 @@
 <template>
   <div id="app">
-    <tabbar></tabbar>
+    <tabbar v-if="isTabbarShow"></tabbar>
     <router-view />
   </div>
 </template>
 
 <script>
 import tabbar from '@/views/Tabbar'
+import { mapState } from 'vuex'
 import Vue from 'vue'
 Vue.component('tabbar', tabbar)
-export default {}
+export default {
+  computed: {
+    ...mapState(['isTabbarShow'])
+  }
+}
 </script>
 
 <style lang="scss">

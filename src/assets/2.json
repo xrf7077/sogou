@@ -2,115 +2,91 @@
     "code": 0,
     "msg": "成功",
     "data": {
-        "skuMap": {
-            "61:265": {
-                "skuStock": {
-                    "stockState": 1,
-                    "remainAmount": 11,
-                    "skuStockId": 4441,
-                    "type": 1,
-                    "hasFreezeStock": 0
-                },
-                "sku": {
-                    "skuName": "经典蓝色",
-                    "image": "//mall01.sogoucdn.com/image/2019/08/28/20190828102919_1885.png",
-                    "productId": 26028,
-                    "salePrice": 39800,
-                    "linePrice": 39800,
-                    "productName": "搜狗AI录音笔C1炫彩版 ",
-                    "skuId": 72028,
-                    "skuAttributeCombination": "61:265",
-                    "normalSaleFlag": 1
-                }
-            },
-            "61:263": {
-                "skuStock": {
-                    "stockState": 1,
-                    "remainAmount": 11,
-                    "skuStockId": 4435,
-                    "type": 1,
-                    "hasFreezeStock": 0
-                },
-                "sku": {
-                    "skuName": "经典黑色",
-                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102926_1886.png",
-                    "productId": 26028,
-                    "salePrice": 39800,
-                    "linePrice": 39800,
-                    "productName": "搜狗AI录音笔C1炫彩版 ",
-                    "skuId": 71998,
-                    "skuAttributeCombination": "61:263",
-                    "normalSaleFlag": 1
-                }
-            },
-            "61:259": {
-                "skuStock": {
-                    "stockState": 1,
-                    "remainAmount": 11,
-                    "skuStockId": 4423,
-                    "type": 1,
-                    "hasFreezeStock": 0
-                },
-                "sku": {
-                    "skuName": "热烈红",
-                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102941_1887.png",
-                    "productId": 26028,
-                    "salePrice": 39800,
-                    "linePrice": 39800,
-                    "productName": "搜狗AI录音笔C1炫彩版 ",
-                    "skuId": 71701,
-                    "skuAttributeCombination": "61:259",
-                    "normalSaleFlag": 1
-                }
-            },
-            "61:257": {
-                "skuStock": {
-                    "stockState": 1,
-                    "remainAmount": 11,
-                    "skuStockId": 4417,
-                    "type": 1,
-                    "hasFreezeStock": 0
-                },
-                "sku": {
-                    "skuName": "明媚黄",
-                    "image": "//mall01.sogoucdn.com/image/2019/08/28/20190828102951_1888.png",
-                    "productId": 26028,
-                    "salePrice": 39800,
-                    "linePrice": 39800,
-                    "productName": "搜狗AI录音笔C1炫彩版 ",
-                    "skuId": 71615,
-                    "skuAttributeCombination": "61:257",
-                    "normalSaleFlag": 1
-                }
-            },
-            "61:261": {
-                "skuStock": {
-                    "stockState": 1,
-                    "remainAmount": 11,
-                    "skuStockId": 4429,
-                    "type": 1,
-                    "hasFreezeStock": 0
-                },
-                "sku": {
-                    "skuName": "纯真白",
-                    "image": "//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png",
-                    "productId": 26028,
-                    "salePrice": 39800,
-                    "linePrice": 39800,
-                    "productName": "搜狗AI录音笔C1炫彩版 ",
-                    "skuId": 71838,
-                    "skuAttributeCombination": "61:261",
-                    "normalSaleFlag": 1
+        "product": {
+            "saleStartTime": "1552874400000",
+            "image": [
+                "//mall01.sogoucdn.com/image/2019/06/26/20190626125928_6506.png",
+                "//mall02.sogoucdn.com/image/2019/03/08/20190308130338_4522.jpg",
+                "//mall01.sogoucdn.com/image/2019/08/09/20190809183459_1772.jpg",
+                "//mall01.sogoucdn.com/image/2019/08/09/20190809183446_1769.jpg",
+                "//mall03.sogoucdn.com/image/2019/08/09/20190809183433_1768.png",
+                "//mall02.sogoucdn.com/image/2019/03/08/20190308130409_4524.jpg",
+                "//mall03.sogoucdn.com/image/2019/03/08/20190308130437_4526.jpg",
+                "//mall01.sogoucdn.com/image/2019/04/12/20190412161909_4686.jpg",
+                "//mall03.sogoucdn.com/image/2019/04/12/20190412162656_4689.jpg",
+                "//mall03.sogoucdn.com/image/2019/03/19/20190319154613_4603.png",
+                "//mall02.sogoucdn.com/image/2019/03/19/20190319154632_4604.png",
+                "//mall03.sogoucdn.com/image/2019/03/19/20190319154757_4607.png",
+                "//mall01.sogoucdn.com/image/2019/03/19/20190319154812_4608.png",
+                "//mall01.sogoucdn.com/image/2019/03/19/20190319154912_4611.png"
+            ],
+            "defaultSkuAttributeCombination": "61:221",
+            "productId": 17658,
+            "defaultSkuId": 60483,
+            "guidePageUrl": "",
+            "video": [
+                "//mall02.sogoucdn.com/video/2019/04/08/20190408164139_4683.m4v"
+            ],
+            "guaranteeTags": [
+                "搜狗自营",
+                "7天无理由退货",
+                "一年内保修"
+            ],
+            "name": "搜狗AI录音笔（智能录音笔C1）",
+            "pcDetailDesc": "<p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/05/15/20190515103127_5002.png\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023190948_2133.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/23/20191023190957_2134.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/23/20191023191007_2135.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/23/20191023191019_2136.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191029_2137.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall02.sogoucdn.com/image/2019/10/23/20191023191050_2138.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023191101_2139.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023191110_2140.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023191120_2141.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191132_2142.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191141_2143.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191151_2144.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/25/20191025152338_2168.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191211_2146.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191219_2147.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023191228_2148.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall01.sogoucdn.com/image/2019/10/23/20191023191239_2149.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><img src=\"//mall03.sogoucdn.com/image/2019/10/23/20191023191249_2150.jpg\" style=\"max-width:100%;vertical-align:bottom;\"><br></p><p style=\"text-align: center;\"><br></p><p style=\"text-align: center;\"><br></p><p style=\"text-align: center;\"><br></p>",
+            "state": 3,
+            "pcParamDesc": "",
+            "desc": "新老包装随机发货 购买即有机会得充电宝 高清录音 语音转文字 16G+云存储 免费转写 同声传译 录音速记"
+        },
+        "shop": {
+            "name": "搜狗自营",
+            "shopId": 1
+        },
+        "attributeList": [
+            {
+                "attributeValueList": [
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 221,
+                        "attributeValueName": "蓝色",
+                        "classExtend": "录音笔C1"
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 223,
+                        "attributeValueName": "黑色",
+                        "classExtend": "老版录音笔"
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 261,
+                        "attributeValueName": "纯真白",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 257,
+                        "attributeValueName": "明媚黄",
+                        "classExtend": ""
+                    },
+                    {
+                        "attributeId": 61,
+                        "attributeValueId": 259,
+                        "attributeValueName": "热烈红",
+                        "classExtend": ""
+                    }
+                ],
+                "attribute": {
+                    "attributeId": 61,
+                    "attributeName": "颜色",
+                    "classExtend": ""
                 }
             }
-        },
-        "skuLinePriceRange": [
-            39800,
-            39800
         ],
-        "skuSalePriceRange": [
-            39800,
-            39800
-        ]
+        "category": {
+            "name": "智能翻译",
+            "categoryId": 57
+        },
+        "systemTime": 1573640465454
     }
 }

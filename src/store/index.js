@@ -32,7 +32,12 @@ const store = new Vuex.Store({
     },
     setIsTabbarShow (state, data) {
       state.isTabbarShow = data
-      console.log(state.isTabbarShow)
+    },
+    showTabbar (state) {
+      state.isTabbarShow = true
+    },
+    hideTabbar (state) {
+      state.isTabbarShow = false
     }
   },
   getters: {
@@ -46,6 +51,5 @@ const store = new Vuex.Store({
       return state.isTabbarShow
     }
   }
-
 })
 export default store
