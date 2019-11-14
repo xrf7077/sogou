@@ -6,7 +6,7 @@
     </header>
     <nav>
       <p>感谢您选择我们</p>
-      <p>使用S码无需预约，可以优先购买产品</p>
+      <p>使用S码无需预约，可以优先购买商品</p>
       <input type="text" placeholder="请输入S码以绑定" />
       <button>绑定S码</button>
     </nav>
@@ -68,6 +68,7 @@ nav {
     }
   }
   input {
+    font-size: 16px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -81,10 +82,16 @@ nav {
     text-align: center;
     color: #262626;
     border: 0;
-    &::placeholder {
-
+    &:focus {
+      outline:none
     }
-
+    &::placeholder {
+      // line-height: 1.92rem;
+      font-size: 15px;
+      color: #ccc;
+      position: relative;
+      top: 2px;
+    }
   }
   button {
     margin-top: 0.85333rem;
