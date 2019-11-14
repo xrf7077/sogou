@@ -21,10 +21,10 @@
             <dd>
               <p class="name">{{data.productName}}</p>
               <p class="color">商品颜色:{{data.skuName}}</p>
-              <span class="price">单价:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
-              <span
+              <span class="price">¥:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
+              <!-- <span
                 class="linePrice"
-              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>
+              >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span> -->
               <div class="calcu">
                 <button @click="handleDel(data)" ref="minus">-</button>
                 <input type="text" :value="data.productNum" />
@@ -60,6 +60,7 @@
         合计:
         <span>{{sum()}}</span>
       </p>
+      <div class="bottom"></div>
     </div>
   </div>
 </template>
@@ -269,6 +270,7 @@ export default {
               position: absolute;
               bottom: 0;
               float: left;
+              color: red;
             }
             .calcu {
               position: absolute;
@@ -353,7 +355,7 @@ export default {
       }
     }
     .bottom {
-      height: 2.58rem;
+      height: 2.68rem;
       float: left;
       width: 100%;
       text-align: center;
@@ -361,18 +363,23 @@ export default {
       color: #bfbfbf;
       font-size: 0.5rem;
       line-height: 1.34rem;
-      margin-bottom: 3.47rem;
+      margin-bottom: 3.57rem;
     }
   }
   .sum {
     position: fixed;
-    bottom: 53px;
+    bottom: 2.73rem;
     width: 96%;
-    height: 2.2rem;
+    height: 2.3rem;
     line-height: 2.2rem;
     font-size: 0.59733rem;
     background: white;
     padding-left: 4%;
+    .bottom{
+      width: 100%;
+      height: 1.3rem;
+      background: #f5f5f5;
+    }
 
     p {
       float: right;
@@ -392,7 +399,7 @@ export default {
     }
     .sub-cart {
       width: 5rem;
-      height: 100%;
+      height: 2.2rem;
       text-align: center;
       color: white;
       float: right;
