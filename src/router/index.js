@@ -29,7 +29,7 @@ const routes = [{
   component: Home
 },
 {
-  path: '/Cate',
+  path: '/Cate/:newId',
   component: Cate
 },
 {
