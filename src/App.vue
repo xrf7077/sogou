@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tabbar></tabbar>
+    <tabbar v-if="$store.state.isTabbarShow"></tabbar>
     <router-view />
   </div>
 </template>
@@ -16,6 +16,9 @@ export default {}
 * {
   margin: 0;
   padding: 0;
+}
+html,body {
+  height: 100%;
 }
 body {
  background-color: rgb(245, 245, 245);

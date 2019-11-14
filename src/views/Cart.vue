@@ -121,7 +121,7 @@ export default {
     sum () {
       //   console.log(this.checkgroup)
       var sum = 0
-      for (var i in this.checkgroup) {
+      for (var i = 0; i < this.checkgroup.length; i++) {
         sum += this.checkgroup[i].productNum * this.checkgroup[i].price
       }
       sum = sum / 100 + '.' + sum.toString().slice(-2)
