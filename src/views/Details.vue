@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <header v-if="detail">
+  <div v-if="detail&&priceInfo">
+    <div class="goBack" @click="goBack">></div>
+    <header>
       <swp id="banner" :options="options" :cName="cName" :pagination="pagination">
         <div class="swiper-slide" v-for="(data,i) in detail.data.product.image" :key="i">
           <img :src="data" alt srcset />
@@ -18,9 +19,9 @@
           loop
         >您的浏览器版本过低，请升级您的浏览器</video>
       </div>
-      <div class="playerBtn" @click="isPlayerShow=!isPlayerShow"></div>
+      <div class="playerBtn" @click="isPlayerShow=!isPlayerShow" v-if="detail.data.product.video[0]">38'24''</div>
     </header>
-    <div class="detail-info" v-if="this.priceInfo">
+    <div class="detail-info">
       <div class="detail-content">
         <div class="detail-name">{{detail.data.product.name}}</div>
         <div class="detail-desc">{{detail.data.product.desc}}</div>
@@ -30,6 +31,8 @@
         <span>{{parseInt(priceInfo.data.skuSalePriceRange[0]/100)+'.00'}}</span>
       </div>
     </div>
+
+    <div class="detail-info-title">商品详情</div>
     <div v-html="detail.data.product.pcDetailDesc" v-if="detail"></div>
     <footer>
       <div class="footer-bar">
@@ -140,6 +143,9 @@ export default {
     swp
   },
   methods: {
+    goBack () {
+      window.history.back()
+    },
     toHome () {
       this.$router.push('/Home')
     },
@@ -184,6 +190,20 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.goBack{
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transform: rotate(180deg);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-align: center;
+  color: #fff;
+  z-index: 9999;
+  line-height: 28px;
+}
 .ironman{
   display: none;
 }
@@ -334,8 +354,18 @@ export default {
     }
   }
 }
+.detail-info-title{
+  color: #EA413C;
+  background: #fff;
+  font-size: .59733rem;
+  height: 2.13333333333333rem;
+  line-height: 2.133333333333rem;
+  text-align: center
+}
 .detail-info {
   padding: 15px 20px;
+  background: #fff;
+  margin-bottom: .42667rem;
   .detail-content {
     .detail-name {
       font-size: 17px;
@@ -387,7 +417,7 @@ footer {
       display: flex;
       height: 100%;
       div {
-        font-size: 16px;
+        font-size: .59733rem;
         flex: 1;
         text-align: center;
         line-height: 50px;
@@ -401,7 +431,7 @@ footer {
   }
 }
 .closePlayer {
-  font-size: 16px;
+  font-size: .59733rem;
   width: 6.4%;
   height: 6.4%;
   position: absolute;
@@ -449,5 +479,10 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   z-index: 99;
+  color: #ddd;
+  font-size: 13px;
+  padding-left: 45px;
+  line-height: 43px;
+  box-sizing: border-box;
 }
 </style>

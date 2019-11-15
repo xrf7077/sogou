@@ -55,7 +55,6 @@ const store = new Vuex.Store({
     hideTabbar (state) {
       state.isTabbarShow = false
     }
-
   },
   getters: {
     homeDataGetter (state) {

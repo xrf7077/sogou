@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Cate from '../views/Cate.vue'
+import CateList from '../views/CateList.vue'
+import List from '../views/CateList/List.vue'
 import Cart from '../views/Cart.vue'
 import My from '../views/My.vue'
 import Tabbar from '../views/Tabbar.vue'
@@ -39,6 +41,15 @@ const routes = [{
 {
   path: '/Cart',
   component: Cart
+}, {
+  path: '/CateList/:type',
+  component: CateList,
+  children: [
+    {
+      path: 'List/:id',
+      component: List
+    }
+  ]
 },
 {
   path: '/My',
