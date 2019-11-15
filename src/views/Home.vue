@@ -121,17 +121,14 @@ export default {
     if (!this.$store.state.HomeData) {
       this.$store.dispatch('getHomeData')
     } else {
-      console.log(this.homeDataGetter)
     }
   },
   methods: {
     handleClick (id) {
-      console.log(id)
       this.$router.push(`/Details/${id}`)
     },
     clickRouter (id) {
       var newId = id.substring(25)
-      console.log(newId)
       this.$router.push({ path: `/CateList/${newId}/List/1` })
     }
   },

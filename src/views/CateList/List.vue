@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="dataList" class="list">
-            <div v-for="(data,i) in dataList" :key="i" class="items">
+            <div v-for="(data,i) in dataList" :key="i" class="items" @click="goToDetail(data.productId)">
                 <!-- {{data.image}} -->
                 <img :src="data.image"/>
                 <p>{{data.name}}</p>
@@ -30,6 +30,11 @@ export default {
         this.dataList = res.data.data.pageList
         console.log(this.dataList)
       })
+  },
+  methods: {
+    goToDetail (id) {
+      this.$router.push(`/Details/${id}`)
+    }
   }
 }
 </script>
