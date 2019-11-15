@@ -1,5 +1,7 @@
 <template>
-  <div id="box">
+  <div id="box"  v-scroll="{
+    $refs:$refs,
+    handleScroll:handleScroll}">
     <div class="top">
       <h2>购物车</h2>
     </div>
@@ -46,10 +48,11 @@
           </dl>
         </li>
       </ul>
+      <empty-cart :class="isHidden?'hidden':''"></empty-cart>
     </div>
     <nav>
       <div class="top"></div>
-      <h3>为你推荐</h3>
+      <h3  ref = "myswiper">为你推荐</h3>
       <dl v-for="data in datalist1" :key="data.productId">
         <dt>
           <img :src="data.image" />
@@ -64,7 +67,7 @@
         <p>没有更多了</p>
       </div>
     </nav>
-    <div class="sum">
+    <div class="sum" :class="isAdsorpt?'':'adsorpt'">
       <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked"/>
       <label for="allChecked"></label>
       <span class="span1">全选</span>
@@ -80,11 +83,15 @@
 </template>
 
 <script>
+import '@/directive/scroll'
+import emptyCart from './Cart/EmptyCart'
 export default {
-  data: function () {
+  data () {
     return {
       isAllChecked: false,
       checkgroup: [],
+      isAdsorpt: false,
+      isHidden: true,
       datalist: [
         {
           image: [
@@ -270,6 +277,9 @@ export default {
       ]
     }
   },
+  components: {
+    emptyCart
+  },
   methods: {
     sum () {
       //   console.log(this.checkgroup)
@@ -319,10 +329,25 @@ export default {
     edit () {
       this.$store.commit('hideCartSum')
       this.$store.commit('showCartSumed')
+      this.isAdsorpt = true
     },
     edited () {
       this.$store.commit('showCartSum')
       this.$store.commit('hideCartSumed')
+      this.isAdsorpt = false
+    },
+    handleScroll (isFixed) {
+      this.isAdsorpt = isFixed
+    }
+  },
+
+  updated () {
+    // console.log(this.datalist.length)
+    // console.log(this.datalist)
+    if (this.datalist.length === 0) {
+      this.isHidden = false
+    } else {
+      this.isHidden = true
     }
   }
 }
@@ -612,5 +637,11 @@ input[type="checkbox"] + label::before {
 }
 input[type="checkbox"]:checked + label::before {
   background-color: red;
+}
+.adsorpt{
+  display: none;
+}
+.hidden{
+  display: none;
 }
 </style>
