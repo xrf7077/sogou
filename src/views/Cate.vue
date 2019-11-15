@@ -2,7 +2,7 @@
   <div class="cate">
       <div class="title">分类</div>
       <div class="cate-type-box" v-for="data in cateDataGetter.data.cateHome" :key="data.categoryId">
-        <img :src="data.categoryImage"/>
+        <img :src="data.categoryImage" @click="jumpToList(data.categoryId)"/>
         <div class="items" v-for="item in data.productList" :key="item.productId" @click="jumpToDetail(item.productId)">
           <img :src="item.image"/>
           <p>{{item.name}}</p>
@@ -14,12 +14,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   mounted () {
     if (!this.$store.state.CateData) {
       this.$store.dispatch('getCateData')
     } else {
-      console.log(this.cateDataGetter)
     }
   },
   computed: {
@@ -28,6 +28,9 @@ export default {
   methods: {
     jumpToDetail (id) {
       this.$router.push(`/Details/${id}`)
+    },
+    jumpToList (id) {
+      this.$router.push({ path: `/CateList/${id}/List/1` })
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tabbar v-if="isTabbarShow"></tabbar>
+    <!-- <tabbar v-if="isTabbarShow"></tabbar> -->
     <tabbar v-if="$store.state.isTabbarShow"></tabbar>
     <router-view />
   </div>

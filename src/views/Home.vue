@@ -132,7 +132,7 @@ export default {
     clickRouter (id) {
       var newId = id.substring(25)
       console.log(newId)
-      // this.$router.push(`/Cate/${newId}`)
+      this.$router.push({ path: `/CateList/${newId}/List/1` })
     }
   },
   computed: {
@@ -144,6 +144,7 @@ export default {
 <style lang="scss" scoped>
 .total {
   background: #fff;
+  padding-bottom: 50px;
   h1 {
     width: 100%;
     height: 47px;
