@@ -144,15 +144,15 @@ export default {
   padding-bottom: 50px;
   h1 {
     width: 100%;
-    height: 47px;
-    line-height: 46px;
+    height: 2.03rem;
+    line-height: 2rem;
     background: #202020;
     color: #fff;
-    font-size: 18px;
+    font-size: 0.78rem;
     text-align: center;
     span {
-      width: 21px;
-      height: 17px;
+      width: 0.91rem;
+      height: 0.73rem;
       display: inline-block;
       color: #fff;
     }
@@ -161,7 +161,7 @@ export default {
     div {
       img {
         display: block;
-        height: 160px;
+        height: 6.85rem;
         width: 100%;
       }
     }
@@ -171,32 +171,32 @@ export default {
     justify-content: space-between;
     list-style: none;
     flex-direction: row;
-    padding: 0 10px;
+    padding: 0 0.43rem;
     li {
-      width: 82px;
-      height: 55px;
-      padding: 0 3px;
+      width: 3.56rem;
+      height: 2.39rem;
+      padding: 0 0.13rem;
       img {
         display: block;
-        width: 40px;
-        height: 40px;
+        width: 1.74rem;
+        height: 1.74rem;
         margin: 0 auto;
       }
       p {
         text-align: center;
-        font-size: 12px;
+        font-size: 0.08rem;
       }
     }
   }
   .swiper_2{
-     width:340px;
-      height:30px;
-      margin:10px 10px 0;
+     width:14.78rem;
+      height:1.30rem;
+      margin:0.43rem 0.43rem 0;
       background: gray;
     .swiper-slide{
-      line-height:30px;
+      line-height:1.3rem;
       p{
-        font-size:12px;
+        font-size:0.4rem;
       span{
         color:red
       }
@@ -204,39 +204,39 @@ export default {
     }
   }
   .list_1 {
-    margin-top:15px;
+    margin-top:0.65rem;
     width: 100%;
     list-style: none;
     overflow: hidden;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 0.04rem solid #ccc;
     li {
-      height: 251px;
-      width: 154px;
+      height: 10.91rem;
+      width: 6.7rem;
       display: inline-block;
-      margin-left: 20px;
+      margin-left: 0.87rem;
       img {
-        width: 157px;
-        height: 165px;
+        width: 6.83rem;
+        height: 7.17rem;
       }
       p {
-        width: 165px;
-        height:13px;
-        font-size: 13px;
+        width: 7.17rem;
+        height:0.56rem;
+        font-size: 0.56rem;
         font-weight: 700;
       }
       .desc {
         color: #8c8c8c;
-        font-size: 8px;
-        margin-top: 3px;
+        font-size: 0.35rem;
+        margin-top: 0.13rem;
       }
       span {
         display: inline-block;
-        width: 137px;
+        width: 5.96rem;
         color: #ea413c;
-        font-size: 12px;
+        font-size: 0.52rem;
         font-weight: 700;
         float: left;
-        margin-top: 5px;
+        margin-top: 0.22rem;
         i {
           float: right;
         }
@@ -246,56 +246,56 @@ export default {
   .list_2 {
     width: 100%;
     p {
-      height: 36px;
-      line-height: 36px;
+      height: 1.57rem;
+      line-height: 1.57rem;
       span {
-        font-size: 15px;
+        font-size: 0.65rem;
         font-weight: 700;
-        margin-left: 5px;
+        margin-left: 0.22rem;
       }
       a {
-        font-size: 12px;
+        font-size: 0.52rem;
         color: #8c8c8c;
         text-decoration: none;
-        margin-left: 190px;
+        margin-left: 8.26rem;
       }
     }
     img {
       width: 100%;
-      height: 134px;
+      height: 5.83rem;
     }
   }
   .productList {
     width: 100%;
     li {
-      height: 251px;
-      width: 154px;
+      height:10.91rem;
+      width: 6.7rem;
       display: inline-block;
-      margin-left: 20px;
+      margin-left: 0.87rem;
       div{
-        font-size:15px;
+        font-size:0.65rem;
         color:#262626;
         font-weight:700;
-        height:16px;
+        height:0.7rem;
         // text-align:left;
       }
       img {
-        width: 157px;
-        height: 165px;
+        width: 6.82rem;
+        height: 7.17rem;
       }
       p {
-        width: 146px;
-        height: 16px;
-        font-size: 12px;
+        width: 6.35rem;
+        height: 0.7rem;
+        font-size: 0.52rem;
         color: #8c8c8c;
       }
       span {
         display: inline-block;
-        width: 137px;
+        width: 5.96rem;
         color: #ea413c;
-        font-size: 12px;
+        font-size: 0.52rem;
         font-weight: 700;
-        margin-top: 10px;
+        margin-top: 0.43rem;
         i {
           float: right;
         }
@@ -305,23 +305,23 @@ export default {
   .list_3 {
     width: 100%;
     p {
-      height: 36px;
-      line-height: 36px;
+      height: 1.57rem;
+      line-height: 1.57rem;
       span {
-        font-size: 15px;
+        font-size: 0.65rem;
         font-weight: 700;
-        margin-left: 5px;
+        margin-left: 0.22rem;
       }
       a {
-        font-size: 12px;
+        font-size: 0.52rem;
         color: #8c8c8c;
         text-decoration: none;
-        margin-left: 190px;
+        margin-left: 8.26rem;
       }
     }
     img {
       width: 100%;
-      height: 134px;
+      height: 5.83rem;
     }
   }
 }
