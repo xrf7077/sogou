@@ -230,7 +230,7 @@ export default {
         margin-top: 0.13rem;
       }
       span {
-        display: inline-block;
+        display: block;
         width: 5.96rem;
         color: #ea413c;
         font-size: 0.52rem;
