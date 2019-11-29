@@ -7,7 +7,20 @@
     </div>
     <div id="cart">
       <div class="up">
-        <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked" />
+        <input
+          type="checkbox"
+          @change="handleChange"
+          v-model="isAllChecked"
+          id="allChecked"
+        />
+        =======
+        <input
+          type="checkbox"
+          @change="handleChange()"
+          v-model="isAllChecked"
+          id="allChecked"
+        />
+        >>>>>>> ljc
         <label for="allChecked"></label>
         <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
@@ -20,7 +33,7 @@
               type="checkbox"
               v-model="checkgroup"
               :value="data"
-              @change="handleItemChange"
+              @change="handleItemChange(data)"
               :id="data.productId"
               hidden
             />
@@ -40,7 +53,13 @@
               <div class="calcu">
                 <span @click="handleDel(data)" ref="minus" class="iconfont icon-jian"></span>
                 <input type="text" :value="data.productNum" />
-                <span @click="data.productNum++" class="iconfont icon-jia"></span>
+                <span
+                  @click="data.productNum++"
+                  class="iconfont icon-jia"
+                ></span>
+                =======
+                <span @click="handleAdd(data)" class="iconfont icon-jia"></span>
+                >>>>>>> ljc
               </div>
             </dd>
           </dl>
@@ -88,6 +107,7 @@ export default {
   data () {
     return {
       isAllChecked: false,
+      isChecked: false,
       checkgroup: [],
       isAdsorpt: false,
       isHidden: true,
@@ -110,14 +130,17 @@ export default {
     handleChange () {
       if (this.isAllChecked) {
         this.checkgroup = this.datalist
+        Axios.get(`8080/chooseAll?selected=1`)
       } else {
         this.checkgroup = []
+        Axios.get(`8080/chooseAll?selected=0`)
       }
       Axios.get(
         `8080/changeSelected?selected=1 &productId=${this.productId} &skuId=${this.skuId}`
       )
     },
-    handleItemChange () {
+    handleItemChange (data) {
+      this.isChecked = !this.isChecked
       if (this.checkgroup.length === this.datalist.length) {
         this.isAllChecked = true
         Axios.get(`8080/chooseAll?selected=1`)
@@ -125,6 +148,9 @@ export default {
         this.isAllChecked = false
         Axios.get(`8080/chooseAll?selected=0`)
       }
+      Axios.get(
+        `8080/changeSelected?selected=1 &productId=${data.productId} &skuId=${data.skuId}`
+      )
     },
     handleDel (data) {
       data.productNum--
@@ -171,11 +197,13 @@ export default {
       this.isAdsorpt = isFixed
     }
   },
-  beforeCreate () {
-    Axios.get('8080/showCart').then(res => {
-      this.datalist = res.data
-    })
-  },
+  // beforeCreate () {
+  //   Axios.get('8080/showCart').then(res => {
+  //     this.datalist = res.data
+  //   })
+  //   this.isChecked = res.data.selected
+  // },
+
   updated () {
     // console.log(this.datalist.length)
     // console.log(this.datalist)
