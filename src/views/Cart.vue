@@ -22,12 +22,11 @@
               type="checkbox"
               v-model="checkgroup"
               :value="data"
-              :checked="Boolean(data.selected)"
               @change="handleItemChange(data)"
-              :id="data.productId"
+              :id="i"
               hidden
             />
-            <label :for="data.productId"></label>
+            <label :for="i"></label>
 
           </div>
           <dl>
@@ -74,7 +73,7 @@
       <label for="allChecked"></label>
       <span class="span1">全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
-      <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel">删除</button>
+      <button class="sub-cart_1" v-show="$store.state.isCartSumShowed" @click="handleListDel(data)">删除</button>
       <p v-show="$store.state.isCartSumShow">
         合计:
         <span>{{sum()}}</span>
@@ -123,13 +122,13 @@ export default {
       }
     },
     handleItemChange (data) {
-      if (this.checkgroup.length === this.datalist.length) {
-        this.isAllChecked = true
-        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=1`)
-      } else {
-        this.isAllChecked = false
-        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
-      }
+      // if (this.checkgroup.length === this.datalist.length) {
+      //   this.isAllChecked = true
+      //   Axios.get(`http://10.2.151.4:8080/chooseAll?selected=1`)
+      // } else {
+      //   this.isAllChecked = false
+      //   Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
+      // }
       Axios.get(
         `http://10.2.151.4:8080/changeSelected?selected=1&productId=${data.productId}&skuId=${data.skuId}`
       )
@@ -151,7 +150,7 @@ export default {
         `http://10.2.151.4:8080/changeProductNum?productNum=${data.productNum}&productId=${data.productId}&skuId=${data.skuId}`
       )
     },
-    handleListDel () {
+    handleListDel (data) {
       var checkgroup = this.checkgroup
       var datalist = this.datalist
       var indexList = []
@@ -165,6 +164,8 @@ export default {
         datalist.splice(indexList[j], 1)
       }
       this.checkgroup = []
+      Axios.get(`http://10.2.151.4:8080/delFromCart`)
+      console.log('aaa')
     },
     edit () {
       this.$store.commit('hideCartSum')
@@ -180,7 +181,7 @@ export default {
       this.isAdsorpt = isFixed
     }
   },
-  beforeCreate () {
+  created () {
     Axios.get('http://10.2.151.4:8080/showCart').then(res => {
       this.datalist = res.data.data.productList
       console.log(this.datalist)
