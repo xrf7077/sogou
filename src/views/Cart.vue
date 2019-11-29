@@ -1,24 +1,14 @@
 <template>
   <div id="box" v-scroll="{
     $refs:$refs,
-    handleScroll:handleScroll}">
+    handleScroll:handleScroll}" v-if="datalist">
     <div class="top">
       <h2>购物车</h2>
     </div>
     <div id="cart">
       <div class="up">
-        <input
-          type="checkbox"
-          @change="handleChange"
-          v-model="isAllChecked"
-          id="allChecked"
-        />
-        <input
-          type="checkbox"
-          @change="handleChange()"
-          v-model="isAllChecked"
-          id="allChecked"
-        />
+        <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked" />
+        <input type="checkbox" @change="handleChange()" v-model="isAllChecked" id="allChecked" />
 
         <label for="allChecked"></label>
         <span class="up_a">全选</span>
@@ -26,39 +16,35 @@
         <div @click="edited" v-show="$store.state.isCartSumShowed">完成</div>
       </div>
       <ul>
-        <li v-for="data in datalist" :key="data.productId">
+        <li v-for="(data,i) in datalist" :key="i">
           <div class="i-select">
             <input
               type="checkbox"
               v-model="checkgroup"
               :value="data"
+              :checked="Boolean(data.selected)"
               @change="handleItemChange(data)"
               :id="data.productId"
               hidden
             />
             <label :for="data.productId"></label>
+
           </div>
           <dl>
             <dt>
-              <img :src="data.image[0]" />
+              <img :src="data.image" />
             </dt>
             <dd>
               <p class="name">{{data.productName}}</p>
               <p class="color">商品颜色:{{data.skuName}}</p>
-              <span class="price">¥:{{data.price/100+"."+data.price.toString().slice(-2)}}</span>
+              <span class="price">¥:{{data.price}}</span>
               <!-- <span
                 class="linePrice"
               >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>-->
               <div class="calcu">
                 <span @click="handleDel(data)" ref="minus" class="iconfont icon-jian"></span>
                 <input type="text" :value="data.productNum" />
-                <span
-                  @click="data.productNum++"
-                  class="iconfont icon-jia"
-                ></span>
-
                 <span @click="handleAdd(data)" class="iconfont icon-jia"></span>
-
               </div>
             </dd>
           </dl>
@@ -68,23 +54,23 @@
     </div>
     <nav>
       <div class="top"></div>
-      <!-- <h3 ref="myswiper">为你推荐</h3>
-      <dl v-for="data in datalist" :key="data.productId">
+      <h3 ref="myswiper">为你推荐</h3>
+      <dl v-for="(data,i) in datalist1" :key="i">
         <dt>
           <img :src="data.image" />
         </dt>
         <dd>
           <p class="name">{{data.name}}</p>
           <p class="detail">{{data.desc}}</p>
-          <p class="price">¥:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</p>
+          <p class="price">¥:{{data.linePrice}}</p>
         </dd>
-      </dl> -->
+      </dl>
       <div class="bottom">
         <p>没有更多了</p>
       </div>
     </nav>
     <div class="sum" :class="isAdsorpt?'':'adsorpt'">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked" />
+      <input type="checkbox" @change="handleChange()" v-model="isAllChecked" id="allChecked" />
       <label for="allChecked"></label>
       <span class="span1">全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
@@ -107,10 +93,12 @@ export default {
     return {
       isAllChecked: false,
       isChecked: false,
+      isCheckedGroup: [],
       checkgroup: [],
       isAdsorpt: false,
       isHidden: true,
-      datalist: []
+      datalist: null,
+      datalist1: [{ 'image': '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png', 'productId': 26028, 'salePrice': 398, 'name': '搜狗AI录音笔C1炫彩版 ', 'linePrice': 398, 'state': 3, 'desc': '新老包装随机发货 购买即可参加送充电宝活动  高清录音 语音转文字 16G+云存储 免费转写 ' }, { 'image': '//mall01.sogoucdn.com/image/2019/06/26/20190626125928_6506.png', 'productId': 17658, 'salePrice': 398, 'name': '搜狗AI录音笔（智能录音笔C1）', 'linePrice': 398, 'state': 3, 'desc': '新老包装随机发货 购买即有机会得充电宝 高清录音 语音转文字 16G+云存储 免费转写 同声传译 录音速记' }, { 'image': '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg', 'productId': 17125, 'salePrice': 2499, 'name': '搜狗翻译宝Pro', 'linePrice': 2599, 'state': 3, 'desc': '同声翻译机 63种语言 中英日韩法俄德离线 拍照翻译 出国旅游同步语音翻译器' }, { 'image': 'http://mall03.sogoucdn.com/image/2019/04/28/20190428142912_4841.jpg', 'productId': 25885, 'salePrice': 598, 'name': '糖猫Y1 能学口语的视频电话手表', 'linePrice': 598, 'state': 3, 'desc': '512MB系统内存  4G存储空间  高清视频通话  英语口语学习' }]
     }
   },
   components: {
@@ -123,7 +111,6 @@ export default {
       for (var i = 0; i < this.checkgroup.length; i++) {
         sum += this.checkgroup[i].productNum * this.checkgroup[i].price
       }
-      sum = sum / 100 + '.' + sum.toString().slice(-2)
       return sum
     },
     handleChange () {
@@ -134,12 +121,8 @@ export default {
         this.checkgroup = []
         Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
       }
-      Axios.get(
-        `http://10.2.151.4:8080/changeSelected?selected=1 &productId=${this.productId} &skuId=${this.skuId}`
-      )
     },
     handleItemChange (data) {
-      this.isChecked = !this.isChecked
       if (this.checkgroup.length === this.datalist.length) {
         this.isAllChecked = true
         Axios.get(`http://10.2.151.4:8080/chooseAll?selected=1`)
@@ -148,23 +131,24 @@ export default {
         Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
       }
       Axios.get(
-        `http://10.2.151.4:8080/changeSelected?selected=1 &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeSelected?selected=1&productId=${data.productId}&skuId=${data.skuId}`
       )
     },
     handleDel (data) {
       data.productNum--
+      console.log(data)
       if (data.productNum === 0) {
         data.productNum = 1
         console.log(this.$refs.minus)
       }
       Axios.get(
-        `http://10.2.151.4:8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeProductNum?productNum=${data.productNum}&productId=${data.productId}&skuId=${data.skuId}`
       )
     },
     handleAdd (data) {
       data.productNum++
       Axios.get(
-        `http://10.2.151.4:8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeProductNum?productNum=${data.productNum}&productId=${data.productId}&skuId=${data.skuId}`
       )
     },
     handleListDel () {
@@ -196,14 +180,17 @@ export default {
       this.isAdsorpt = isFixed
     }
   },
-  mounted () {
+  beforeCreate () {
     Axios.get('http://10.2.151.4:8080/showCart').then(res => {
-      this.datalist = res.data
+      this.datalist = res.data.data.productList
+      console.log(this.datalist)
+      for (var i = 0; i < this.datalist.length; i++) {
+        console.log(Boolean(this.datalist[i].selected))
+      }
     })
   },
 
   updated () {
-    // console.log(this.datalist.length)
     // console.log(this.datalist)
     if (this.datalist.length === 0) {
       this.isHidden = false
