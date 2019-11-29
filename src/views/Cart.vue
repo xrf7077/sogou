@@ -13,14 +13,13 @@
           v-model="isAllChecked"
           id="allChecked"
         />
-        =======
         <input
           type="checkbox"
           @change="handleChange()"
           v-model="isAllChecked"
           id="allChecked"
         />
-        >>>>>>> ljc
+
         <label for="allChecked"></label>
         <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
@@ -57,9 +56,9 @@
                   @click="data.productNum++"
                   class="iconfont icon-jia"
                 ></span>
-                =======
+
                 <span @click="handleAdd(data)" class="iconfont icon-jia"></span>
-                >>>>>>> ljc
+
               </div>
             </dd>
           </dl>
