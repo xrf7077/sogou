@@ -68,8 +68,8 @@
     </div>
     <nav>
       <div class="top"></div>
-      <h3 ref="myswiper">为你推荐</h3>
-      <dl v-for="data in datalist1" :key="data.productId">
+      <!-- <h3 ref="myswiper">为你推荐</h3>
+      <dl v-for="data in datalist" :key="data.productId">
         <dt>
           <img :src="data.image" />
         </dt>
@@ -78,7 +78,7 @@
           <p class="detail">{{data.desc}}</p>
           <p class="price">¥:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</p>
         </dd>
-      </dl>
+      </dl> -->
       <div class="bottom">
         <p>没有更多了</p>
       </div>
@@ -129,26 +129,26 @@ export default {
     handleChange () {
       if (this.isAllChecked) {
         this.checkgroup = this.datalist
-        Axios.get(`8080/chooseAll?selected=1`)
+        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=1`)
       } else {
         this.checkgroup = []
-        Axios.get(`8080/chooseAll?selected=0`)
+        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
       }
       Axios.get(
-        `8080/changeSelected?selected=1 &productId=${this.productId} &skuId=${this.skuId}`
+        `http://10.2.151.4:8080/changeSelected?selected=1 &productId=${this.productId} &skuId=${this.skuId}`
       )
     },
     handleItemChange (data) {
       this.isChecked = !this.isChecked
       if (this.checkgroup.length === this.datalist.length) {
         this.isAllChecked = true
-        Axios.get(`8080/chooseAll?selected=1`)
+        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=1`)
       } else {
         this.isAllChecked = false
-        Axios.get(`8080/chooseAll?selected=0`)
+        Axios.get(`http://10.2.151.4:8080/chooseAll?selected=0`)
       }
       Axios.get(
-        `8080/changeSelected?selected=1 &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeSelected?selected=1 &productId=${data.productId} &skuId=${data.skuId}`
       )
     },
     handleDel (data) {
@@ -158,13 +158,13 @@ export default {
         console.log(this.$refs.minus)
       }
       Axios.get(
-        `8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
       )
     },
     handleAdd (data) {
       data.productNum++
       Axios.get(
-        `8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+        `http://10.2.151.4:8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
       )
     },
     handleListDel () {
@@ -196,12 +196,11 @@ export default {
       this.isAdsorpt = isFixed
     }
   },
-  // beforeCreate () {
-  //   Axios.get('8080/showCart').then(res => {
-  //     this.datalist = res.data
-  //   })
-  //   this.isChecked = res.data.selected
-  // },
+  mounted () {
+    Axios.get('http://10.2.151.4:8080/showCart').then(res => {
+      this.datalist = res.data
+    })
+  },
 
   updated () {
     // console.log(this.datalist.length)
