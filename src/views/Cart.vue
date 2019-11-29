@@ -1,5 +1,5 @@
 <template>
-  <div id="box"  v-scroll="{
+  <div id="box" v-scroll="{
     $refs:$refs,
     handleScroll:handleScroll}">
     <div class="top">
@@ -7,7 +7,7 @@
     </div>
     <div id="cart">
       <div class="up">
-        <input type="checkbox" @change="handleChange" v-model="isAllChecked" id = "allChecked"/>
+        <input type="checkbox" @change="handleChange()" v-model="isAllChecked" id="allChecked" />
         <label for="allChecked"></label>
         <span class="up_a">全选</span>
         <div @click="edit" v-show="$store.state.isCartSumShow">编辑</div>
@@ -20,7 +20,7 @@
               type="checkbox"
               v-model="checkgroup"
               :value="data"
-              @change="handleItemChange"
+              @change="handleItemChange(data)"
               :id="data.productId"
               hidden
             />
@@ -38,11 +38,9 @@
                 class="linePrice"
               >原价:{{data.linePrice/100+"."+data.linePrice.toString().slice(-2)}}</span>-->
               <div class="calcu">
-                <span @click="handleDel(data)" ref="minus" class="iconfont icon-jian
-"></span>
+                <span @click="handleDel(data)" ref="minus" class="iconfont icon-jian"></span>
                 <input type="text" :value="data.productNum" />
-                <span @click="data.productNum++" class="iconfont icon-jia
-"></span>
+                <span @click="handleAdd(data)" class="iconfont icon-jia"></span>
               </div>
             </dd>
           </dl>
@@ -52,7 +50,7 @@
     </div>
     <nav>
       <div class="top"></div>
-      <h3  ref = "myswiper">为你推荐</h3>
+      <h3 ref="myswiper">为你推荐</h3>
       <dl v-for="data in datalist1" :key="data.productId">
         <dt>
           <img :src="data.image" />
@@ -68,7 +66,7 @@
       </div>
     </nav>
     <div class="sum" :class="isAdsorpt?'':'adsorpt'">
-      <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked"/>
+      <input type="checkbox" @change="handleChange" v-model="isAllChecked" id="allChecked" />
       <label for="allChecked"></label>
       <span class="span1">全选</span>
       <div class="sub-cart" v-show="$store.state.isCartSumShow">结算</div>
@@ -85,196 +83,16 @@
 <script>
 import '@/directive/scroll'
 import emptyCart from './Cart/EmptyCart'
+import Axios from 'axios'
 export default {
   data () {
     return {
       isAllChecked: false,
+      isChecked: false,
       checkgroup: [],
       isAdsorpt: false,
       isHidden: true,
-      datalist: [
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/01/25/20190125180339_4463.jpg'
-          ],
-          productId: 52,
-          linePrice: 5900,
-          productNum: 1,
-          subTotal: 5900,
-          productState: 1,
-          productName: 'Color专用表带',
-          skuName: '蓝色',
-          price: 5900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 54782,
-          selected: true
-        },
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/04/17/20190417153831_4742.jpg'
-          ],
-          productId: 19608,
-          linePrice: 6000,
-          productNum: 1,
-          subTotal: 6000,
-          productState: 1,
-          productName: '糖猫T2 卡通吊坠保护套',
-          skuName: '蓝色',
-          price: 6000,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 63743,
-          selected: true
-        },
-        {
-          image: [
-            '//mall01.sogoucdn.com/image/2019/04/17/20190417164338_4766.jpg'
-          ],
-          productId: 13999,
-          linePrice: 9900,
-          productNum: 1,
-          subTotal: 9900,
-          productState: 1,
-          productName: '糖猫学生儿童小书包',
-          skuName: '颜色随机',
-          price: 9900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 55123,
-          selected: true
-        },
-        {
-          image: [
-            '//mall02.sogoucdn.com/image/2019/01/25/20190125142634_4391.jpg'
-          ],
-          productId: 12180,
-          linePrice: 99800,
-          productNum: 1,
-          subTotal: 99800,
-          productState: 1,
-          productName: '糖猫儿童智能电话手表M2',
-          skuName: '蜜桃粉',
-          price: 99800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 51549,
-          selected: true
-        },
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/04/28/20190428142913_4843.jpg'
-          ],
-          productId: 25885,
-          linePrice: 59800,
-          productNum: 1,
-          subTotal: 59800,
-          productState: 1,
-          productName: '糖猫Y1 能学口语的视频电话手表',
-          skuName: '粉色',
-          price: 59800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 71493,
-          selected: true
-        },
-        {
-          image: [
-            '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png'
-          ],
-          productId: 26028,
-          linePrice: 39800,
-          productNum: 1,
-          subTotal: 39800,
-          productState: 1,
-          productName: '搜狗AI录音笔C1炫彩版 ',
-          skuName: '纯真白',
-          price: 39800,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 71838,
-          selected: true
-        },
-        {
-          image: [
-            '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg'
-          ],
-          productId: 17125,
-          linePrice: 259900,
-          productNum: 1,
-          subTotal: 249900,
-          productState: 1,
-          productName: '搜狗翻译宝Pro',
-          skuName: '雅典灰',
-          price: 249900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 50106,
-          selected: false
-        },
-        {
-          image: [
-            '//mall02.sogoucdn.com/image/2019/05/21/20190521114138_6068.jpg'
-          ],
-          productId: 21384,
-          linePrice: 19900,
-          productNum: 1,
-          subTotal: 19900,
-          productState: 1,
-          productName: '【双十一特价】糖猫Plus2 能变声讲故事的电话手表',
-          skuName: '蓝色',
-          price: 19900,
-          stockNum: 10,
-          shopId: 1,
-          skuId: 66105,
-          selected: false
-        }
-      ],
-      datalist1: [
-        {
-          image:
-            '//mall03.sogoucdn.com/image/2019/08/28/20190828102904_1884.png',
-          productId: 26028,
-          salePrice: 39800,
-          name: '搜狗AI录音笔C1炫彩版 ',
-          linePrice: 39800,
-          state: 3,
-          desc:
-            '新老包装随机发货 购买即可参加送充电宝活动  高清录音 语音转文字 16G+云存储 免费转写 '
-        },
-        {
-          image:
-            '//mall01.sogoucdn.com/image/2019/06/26/20190626125928_6506.png',
-          productId: 17658,
-          salePrice: 39800,
-          name: '搜狗AI录音笔（智能录音笔C1）',
-          linePrice: 39800,
-          state: 3,
-          desc:
-            '新老包装随机发货 购买即有机会得充电宝 高清录音 语音转文字 16G+云存储 免费转写 同声传译 录音速记'
-        },
-        {
-          image:
-            '//mall01.sogoucdn.com/image/2019/05/21/20190521160236_6102.jpg',
-          productId: 17125,
-          salePrice: 249900,
-          name: '搜狗翻译宝Pro',
-          linePrice: 259900,
-          state: 3,
-          desc:
-            '同声翻译机 63种语言 中英日韩法俄德离线 拍照翻译 出国旅游同步语音翻译器'
-        },
-        {
-          image:
-            'http://mall03.sogoucdn.com/image/2019/04/28/20190428142912_4841.jpg',
-          productId: 25885,
-          salePrice: 59800,
-          name: '糖猫Y1 能学口语的视频电话手表',
-          linePrice: 59800,
-          state: 3,
-          desc: '512MB系统内存  4G存储空间  高清视频通话  英语口语学习'
-        }
-      ]
+      datalist: []
     }
   },
   components: {
@@ -293,16 +111,24 @@ export default {
     handleChange () {
       if (this.isAllChecked) {
         this.checkgroup = this.datalist
+        Axios.get(`8080/chooseAll?selected=1`)
       } else {
         this.checkgroup = []
+        Axios.get(`8080/chooseAll?selected=0`)
       }
     },
-    handleItemChange () {
+    handleItemChange (data) {
+      this.isChecked = !this.isChecked
       if (this.checkgroup.length === this.datalist.length) {
         this.isAllChecked = true
+        Axios.get(`8080/chooseAll?selected=1`)
       } else {
         this.isAllChecked = false
+        Axios.get(`8080/chooseAll?selected=0`)
       }
+      Axios.get(
+        `8080/changeSelected?selected=1 &productId=${data.productId} &skuId=${data.skuId}`
+      )
     },
     handleDel (data) {
       data.productNum--
@@ -310,6 +136,15 @@ export default {
         data.productNum = 1
         console.log(this.$refs.minus)
       }
+      Axios.get(
+        `8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+      )
+    },
+    handleAdd (data) {
+      data.productNum++
+      Axios.get(
+        `8080/changeproductNum?productNum=${data.productNum} &productId=${data.productId} &skuId=${data.skuId}`
+      )
     },
     handleListDel () {
       var checkgroup = this.checkgroup
@@ -340,6 +175,12 @@ export default {
       this.isAdsorpt = isFixed
     }
   },
+  beforeCreate () {
+    // Axios.get("8080/showCart").then(res => {
+    //   this.datalist = res.data;
+    // });
+    // this.isChecked = res.data.selected
+  },
 
   updated () {
     // console.log(this.datalist.length)
@@ -357,20 +198,19 @@ export default {
 #box {
   background: white;
   .top {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      height: 2.3rem;
-      line-height: 2.13rem;
-      font-size: .5rem;
-      background:#f5f5f5;
-      z-index:1;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 2.3rem;
+    line-height: 2.13rem;
+    font-size: 0.5rem;
+    background: #f5f5f5;
+    z-index: 1;
     h2 {
       text-align: center;
       font-weight: 400;
       height: 2.3rem;
-      background:#f5f5f5;
-
+      background: #f5f5f5;
     }
   }
   #cart {
@@ -387,20 +227,20 @@ export default {
         margin-left: 1.7rem;
       }
       input {
-            float: left;
-            line-height: 3.4rem;
-            margin-left: 4%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            display: none;
-          }
-          label {
-            margin-left: 4%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-          }
+        float: left;
+        line-height: 3.4rem;
+        margin-left: 4%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+      }
+      label {
+        margin-left: 4%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       span {
         height: 2rem;
         line-height: 2rem;
@@ -474,7 +314,7 @@ export default {
               height: 1rem;
               float: right;
               input {
-                display: inline;
+                display: inline-block;
                 width: 2rem;
                 height: 1rem;
                 text-align: center;
@@ -580,24 +420,24 @@ export default {
         color: red;
       }
     }
-          input {
-            float: left;
-            line-height: 3.4rem;
-            margin-left: 4%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            display: none;
-          }
-          label {
-            margin-left: 4%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-          .span1{
-            margin-left:1.7rem
-          }
+    input {
+      float: left;
+      line-height: 3.4rem;
+      margin-left: 4%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+    }
+    label {
+      margin-left: 4%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .span1 {
+      margin-left: 1.7rem;
+    }
 
     .sub-cart {
       width: 5rem;
@@ -638,10 +478,10 @@ input[type="checkbox"] + label::before {
 input[type="checkbox"]:checked + label::before {
   background-color: red;
 }
-.adsorpt{
+.adsorpt {
   display: none;
 }
-.hidden{
+.hidden {
   display: none;
 }
 </style>
