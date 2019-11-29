@@ -1,14 +1,13 @@
 <template>
     <div>
         <div v-if="dataList" class="list">
-            <div v-for="(data,i) in dataList" :key="i" class="items" @click="goToDetail(data.productId)">
-                <!-- {{data.image}} -->
-                <img :src="data.image"/>
+            <div v-for="(data,i) in dataList.productList" :key="i" class="items" @click="goToDetail(data.productId)">
+                <img :src="data.image[0].img"/>
                 <p>{{data.name}}</p>
                 <span>{{data.desc}}</span>
                 <div>
                     <span>￥</span>
-                    <span>{{data.salePrice/100}}</span>
+                    <span>{{data.salePrice}}</span>
                 </div>
             </div>
         </div>
@@ -20,14 +19,30 @@ import Axios from 'axios'
 export default {
   data () {
     return {
-      dataList: null
+      dataList: null,
+      url: `http://10.2.151.4:8080/getProducts?categoryId=${this.$route.params.type}`
     }
   },
-  props: ['type'],
+  props: ['listId'],
+  beforeMount () {
+    switch (this.$route.params.id) {
+      case '0':
+        this.url = `http://10.2.151.4:8080/getProducts?categoryId=${this.$route.params.type}`
+        break
+      case '1':
+        this.url = `http://10.2.151.4:8080/orderBySales?categoryId=${this.$route.params.type}&msg=0`
+        break
+      case '2':
+        this.url = `http://10.2.151.4:8080/orderByPrice?categoryId=${this.$route.params.type}&msg=0`
+        break
+      default:
+        break
+    }
+  },
   mounted () {
-    Axios(`/api/product/product/product_list?c=h5&s=20000&t=1573780345669&v=1.0&category_id=${this.$route.params.type}&sort_field=${this.$route.params.id}&sort_order=2&pn=1&ps=6`)
+    Axios(this.url)
       .then(res => {
-        this.dataList = res.data.data.pageList
+        this.dataList = res.data
         console.log(this.dataList)
       })
   },
