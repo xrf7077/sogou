@@ -107,7 +107,7 @@ export default {
   },
   mounted () {
     axios({
-      url: 'json/mobile/topic-home.json?c=h5&s=20000&t=1573633887668&v=1.0'
+      url: '/json/mobile/topic-home.json'
     }).then(res => {
       this.dataList = res.data.data.mods[0].list
       this.navList = res.data.data.mods[2].list
@@ -189,10 +189,11 @@ export default {
     }
   }
   .swiper_2{
-     width:14.78rem;
+      width:14.78rem;
       height:1.30rem;
       margin:0.43rem 0.43rem 0;
       background: gray;
+      text-align: center;
     .swiper-slide{
       line-height:1.3rem;
       p{
@@ -257,7 +258,7 @@ export default {
         font-size: 0.52rem;
         color: #8c8c8c;
         text-decoration: none;
-        margin-left: 8.26rem;
+        margin-left: 10.26rem;
       }
     }
     img {
@@ -316,12 +317,17 @@ export default {
         font-size: 0.52rem;
         color: #8c8c8c;
         text-decoration: none;
-        margin-left: 8.26rem;
+        margin-left: 10.26rem;
       }
     }
     img {
       width: 100%;
       height: 5.83rem;
+    }
+    div{
+      overflow:hidden;
+      white-space:no-wrap;
+      text-overflow:ellipsis;
     }
   }
 }
