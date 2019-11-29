@@ -1,12 +1,14 @@
 <template>
-  <div v-if="detail&&priceInfo">
+  <div v-if="detail">
     <div class="goBack" @click="goBack">></div>
     <header>
+      <!-- Swiper Component ↓ -->
       <swp id="banner" :options="options" :cName="cName" :pagination="pagination">
         <div class="swiper-slide" v-for="(data,i) in detail.data.product.image" :key="i">
-          <img :src="data" alt srcset />
+          <img :src="data.img" alt srcset />
         </div>
       </swp>
+      <!-- Video ↓ -->
       <div v-if="this.isPlayerShow" class="player-container">
         <div class="closePlayer" @click="isPlayerShow=false">&chi;</div>
         <video
@@ -19,7 +21,8 @@
           loop
         >您的浏览器版本过低，请升级您的浏览器</video>
       </div>
-      <div class="playerBtn" @click="isPlayerShow=!isPlayerShow" v-if="detail.data.product.video[0]">38'24''</div>
+      <!-- Video Btn ↓ -->
+      <div class="playerBtn" @click="isPlayerShow=!isPlayerShow" v-if="detail.data.product.video">38'24''</div>
     </header>
     <div class="detail-info">
       <div class="detail-content">
@@ -28,7 +31,7 @@
       </div>
       <div class="detail-price-row">
         <span>￥</span>
-        <span>{{parseInt(priceInfo.data.skuSalePriceRange[0]/100)+'.00'}}</span>
+        <span>{{detail.data.product.salePrice+'0'}}</span>
       </div>
     </div>
 
@@ -53,13 +56,13 @@
           <span class="close-button" @click="closeModal">&times;</span>
           <div class="desc">
             <div class="pic">
-              <img :src="itemInfo.picSrc" />
+              <img :src="detail.data.skus[itemInfo.index].image" v-if="itemInfo.skuId" />
             </div>
             <div class="text">
               <div class="name">{{detail.data.product.name}}</div>
               <div class="price">
                 <span>￥</span>
-                <span>{{parseInt(priceInfo.data.skuSalePriceRange[0]/100)+'.00'}}</span>
+                <span>{{detail.data.product.salePrice+'.00'}}</span>
               </div>
             </div>
           </div>
@@ -67,10 +70,11 @@
             <p>颜色</p>
             <div class="color-list">
               <div
-                v-for="(data,i) in detail.data.attributeList[0].attributeValueList"
-                :key="data.attributeValueId"
-                @click="chooseColor(detail.data.attributeList[0].attributeValueList[i].attributeId,detail.data.attributeList[0].attributeValueList[i].attributeValueId)"
-              >{{data.attributeValueName}}</div>
+                v-for="(data, i) in detail.data.skus"
+                :key="data.skuId"
+                @click="chooseColor(data.skuId,i)"
+                :class="(i===itemInfo.index)?'skuChecked':'0'"
+              >{{data.skuName}}</div>
             </div>
           </div>
           <div class="set-num">
@@ -114,23 +118,20 @@ export default {
       priceInfo: null, // 价格信息
       time: 0,
       itemInfo: {
-        color: '蓝色',
-        picSrc: '',
-        num: 1
+        num: 1,
+        index: 0,
+        skuId: null,
+        skuName: null
       }
     }
   },
   beforeCreate () {
     Axios(
-      `/api/product/product/product_detail?c=h5&s=20000&t=1573561721260&v=1.0&product_id=${this.$route.params.id}`
+      `http://10.2.151.4:8080/detail?productId=${this.$route.params.id}`
     ).then(res => {
       this.detail = res.data
-      this.itemInfo.picSrc = this.detail.data.product.image[0]
-    })
-    Axios(
-      `/api/product/sku/sku_stock_detail?c=h5&s=20000&t=1573564055256&v=1.0&product_id=${this.$route.params.id}&stock_type=1`
-    ).then(res => {
-      this.priceInfo = res.data
+      this.itemInfo.skuId = this.detail.data.skus[this.itemInfo.index].skuId
+      this.itemInfo.skuName = this.detail.data.skus[this.itemInfo.index].skuName
     })
   },
   beforeMount () {
@@ -158,8 +159,11 @@ export default {
     add () {
       this.itemInfo.num++
     },
-    chooseColor (attributeId, attributeValueId) {
-      console.log(attributeId + '----' + attributeValueId)
+    chooseColor (attributeId, i) {
+      this.itemInfo.index = i
+      this.itemInfo.skuId = this.detail.data.skus[i].skuId
+      this.itemInfo.skuName = this.detail.data.skus[i].skuName
+      console.log({ ...this.itemInfo })
     },
     closeModal () {
       this.isModalShow = 0
@@ -190,6 +194,10 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.skuChecked{
+  color: #ea413c !important;
+  border: 1PX solid #ea413c !important;
+}
 .goBack{
   width: 30px;
   height: 30px;
@@ -410,6 +418,18 @@ footer {
         color: #595959;
         padding-top: 30px;
         box-sizing: border-box;
+        background-size: 60% 60%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        &:first-of-type{
+          background-image: url('../assets/imgs/detail/homepage.png')
+        }
+        &:nth-of-type(2){
+          background-image: url('../assets/imgs/detail/services.png')
+        }
+        &:last-of-type{
+          background-image: url('../assets/imgs/detail/cart.png')
+        }
       }
     }
     .btn-box {

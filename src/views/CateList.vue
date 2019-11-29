@@ -54,12 +54,8 @@ export default {
   beforeDestroy () {
     this.$store.commit('showTabbar')
   },
-  mounted () {
-    console.log(this.$route.params)
-  },
   methods: {
     refresh () {
-      console.log(123)
       this.activeDate = new Date().getTime()
     }
   }

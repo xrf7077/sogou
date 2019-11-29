@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         })
     },
     getCateData (store) {
-      Axios(`/json/mobile/cate-home.json?c=h5&s=20000&t=1573714303936&v=1.0`)
+      Axios(`http://10.2.151.4:8080/categoryInit`)
         .then(res => {
           store.commit('setCateData', res.data)
         })

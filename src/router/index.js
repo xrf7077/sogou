@@ -23,6 +23,7 @@ import order from '../views/Order.vue'
 import notUsed from '../views/my/Assets/coupon/not_used.vue'
 import Already from '../views/my/Assets/coupon/Already_used.vue'
 import Overdue from '../views/my/Assets/coupon/Overdue.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -126,6 +127,10 @@ const routes = [{
       component: After
     }
   ]
+},
+{
+  path: '/login',
+  component: Login
 }
 ]
 

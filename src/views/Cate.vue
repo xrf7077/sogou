@@ -4,7 +4,7 @@
       <div class="cate-type-box" v-for="data in cateDataGetter.data.cateHome" :key="data.categoryId">
         <img :src="data.categoryImage" @click="jumpToList(data.categoryId)"/>
         <div class="items" v-for="item in data.productList" :key="item.productId" @click="jumpToDetail(item.productId)">
-          <img :src="item.image"/>
+          <img :src="item.image[0].img"/>
           <p>{{item.name}}</p>
           <span>￥{{item.salePrice}}</span>
         </div>
@@ -21,6 +21,7 @@ export default {
       this.$store.dispatch('getCateData')
     } else {
     }
+    console.log(this.cateDataGetter.data.cateHome)
   },
   computed: {
     ...mapGetters(['cateDataGetter'])
